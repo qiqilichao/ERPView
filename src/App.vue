@@ -2,49 +2,24 @@
   <div id="app" class="homeWrap">
     <el-container style="height: 100%;">
       <el-header>
-<!--        <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">-->
-<!--          <el-menu-item index="1">处理中心</el-menu-item>-->
-<!--          <el-submenu index="2">-->
-<!--            <template slot="title">我的工作台</template>-->
-<!--            <el-menu-item index="2-1">选项1</el-menu-item>-->
-<!--            <el-menu-item index="2-2">选项2</el-menu-item>-->
-<!--            <el-menu-item index="2-3">选项3</el-menu-item>-->
-<!--            <el-submenu index="2-4">-->
-<!--              <template slot="title">选项4</template>-->
-<!--              <el-menu-item index="2-4-1">选项1</el-menu-item>-->
-<!--              <el-menu-item index="2-4-2">选项2</el-menu-item>-->
-<!--              <el-menu-item index="2-4-3">选项3</el-menu-item>-->
-<!--            </el-submenu>-->
-<!--          </el-submenu>-->
-<!--          <el-menu-item index="3" disabled>消息中心</el-menu-item>-->
-<!--          <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>-->
-<!--        </el-menu>-->
-<!--        <div class="line"></div>-->
-<!--        <el-menu-->
-<!--          :default-active="activeIndex2"-->
-<!--          class="el-menu-demo"-->
-<!--          mode="horizontal"-->
-<!--          @select="handleSelect"-->
-<!--          background-color="#545c64"-->
-<!--          text-color="#fff"-->
-<!--          active-text-color="#ffd04b">-->
-<!--          <el-menu-item index="1">处理中心</el-menu-item>-->
-<!--          <el-submenu index="2">-->
-<!--            <template slot="title">我的工作台</template>-->
-<!--            <el-menu-item index="2-1">选项1</el-menu-item>-->
-<!--            <el-menu-item index="2-2">选项2</el-menu-item>-->
-<!--            <el-menu-item index="2-3">选项3</el-menu-item>-->
-<!--            <el-submenu index="2-4">-->
-<!--              <template slot="title">选项4</template>-->
-<!--              <el-menu-item index="2-4-1">选项1</el-menu-item>-->
-<!--              <el-menu-item index="2-4-2">选项2</el-menu-item>-->
-<!--              <el-menu-item index="2-4-3">选项3</el-menu-item>-->
-<!--            </el-submenu>-->
-<!--          </el-submenu>-->
-<!--          <el-menu-item index="3" disabled>消息中心</el-menu-item>-->
-<!--          <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>-->
-<!--        </el-menu>-->
-
+        <span style="font-size: 25px;color: #f0f8ff">后台管理系统</span>
+<!-- 这是一行有用的代码-->
+<!--         <el-button @click="dd"><i class="el-icon-menu"></i></el-button>
+            open="handleOpen" @close="handleClose" :collapse="isCollapse"
+            \handleOpen(key, keyPath) {
+      console.log(key, keyPath);
+    },
+    handleClose(key, keyPath) {
+      console.log(key, keyPath);
+    },
+    dd(){
+      if(this.isCollapse){
+        this.isCollapse=false;
+      }else{
+        this.isCollapse=true;
+      }
+    }
+-->
       </el-header>
       <el-container>
         <el-aside>
@@ -54,31 +29,31 @@
                     background-color="#545c64"
                     text-color="#fff"
                     active-text-color="#ffd04b">
-                    <el-submenu :index="parentmenu.id+''" v-for="parentmenu in menutable">
+                    <el-submenu :index="parentmenu.id+''" :key="parentmenu.id" v-for="parentmenu in menutable">
                       <template slot="title">
-                        <i :class="parentmenu.link_url"></i>
+                        <i :class="parentmenu.imageURL"></i>
                         <span>{{parentmenu.name}}</span>
                       </template>
-                        <el-submenu :index="childmenu1.id+''" v-for="childmenu1 in parentmenu.childMenu">
+                        <el-submenu :index="childmenu1.id+''"  :key="childmenu1.id" v-for="childmenu1 in parentmenu.childMenu">
                           <template slot="title">
-                            <i :class="childmenu1.link_url"></i>
+                            <i :class="childmenu1.imageURL"></i>
                             <span>{{childmenu1.name}}</span>
                           </template>
 
                           <el-menu-item-group>
-                            <el-menu-item v-if="childmenu2.childMenu.length==0"  @click="addTab(childmenu2.name,childmenu2.link_url)" :index="childmenu2.id+''" v-for="childmenu2 in childmenu1.childMenu">
-                              <i :class="childmenu2.link_url"></i>{{childmenu2.name}}
+                            <el-menu-item v-if="childmenu2.childMenu.length==0" :key="childmenu2.id"  @click="addTab(childmenu2.name,childmenu2.linkUrl)" :index="childmenu2.id+''" v-for="childmenu2 in childmenu1.childMenu">
+                              <i :class="childmenu2.imageURL"></i>{{childmenu2.name}}
                             </el-menu-item>
                           </el-menu-item-group>
-                          <el-submenu v-if="childmenu2.childMenu.length > 0" :index="childmenu2.id+''" v-for="childmenu2 in childmenu1.childMenu">
+                          <el-submenu v-if="childmenu2.childMenu.length > 0" :key="childmenu2.id" :index="childmenu2.id+''" v-for="childmenu2 in childmenu1.childMenu">
                             <template slot="title">
-                              <i :class="childmenu2.link_url"></i>
+                              <i :class="childmenu2.imageURL"></i>
                               <span>{{childmenu2.name}}</span>
                             </template>
 
                             <el-menu-item-group>
-                              <el-menu-item   @click="addTab(childmenu3.name,childmenu3.link_url)" :index="childmenu3.id+''" v-for="childmenu3 in childmenu2.childMenu">
-                                <i :class="childmenu3.link_url"></i>{{childmenu3.name}}
+                              <el-menu-item   @click="addTab(childmenu3.name,childmenu3.linkUrl)" :key="childmenu3.id" :index="childmenu3.id+''" v-for="childmenu3 in childmenu2.childMenu">
+                                <i :class="childmenu3.imageURL"></i>{{childmenu3.name}}
 
                               </el-menu-item>
                             </el-menu-item-group>
@@ -89,6 +64,16 @@
                   </el-menu>
         </el-aside>
         <el-main>
+          <el-tabs v-model="editableTabsValue" type="card" closable @tab-remove="removeTab">
+            <el-tab-pane
+              v-for="(item, index) in editableTabs"
+              :key="item.name"
+              :label="item.title"
+              :name="item.name"
+            >
+              <component :is="item.content"></component>
+            </el-tab-pane>
+          </el-tabs>
 
         </el-main>
       </el-container>
@@ -97,11 +82,26 @@
 </template>
 
 <script>
+
+  import Welcome from "./compontents/Welcome";
+  import Productionquery from "./compontents/Internalproduction/Productionquery";
+  import ProductRegistration from "./compontents/Internalproduction/ProductRegistration";
+  import ProductRegistrationreview from "./compontents/Internalproduction/ProductRegistrationreview";
+
 export default {
   name: 'app',
   data () {
     return {
-      menutable:[]
+      menutable:[],
+      editableTabsValue: '1',  // 设置选中的
+      editableTabs: [{   //tab选项卡显示的数据内容
+        title: '首页',
+        name: '1',
+        content: 'Welcome'
+      }],
+      tabIndex: 1   // 设置到name属性的值
+      // isCollapse:true
+
     }
   },
   methods:{
@@ -114,9 +114,48 @@ export default {
         })
       }).catch()
     },
-    addTab(a,b){
+    addTab(titlename,linkurl) {
 
+      console.log(titlename+""+linkurl)
+
+      //判断当前页面是否存在
+      var tempobj = this.editableTabs.find((item)=>{return item.title==titlename});
+
+      //存在  active
+      if(tempobj!=undefined){
+        this.editableTabsValue =tempobj.name ;
+      }else {
+        //不存在 添加
+        let newTabName = ++this.tabIndex + '';
+        this.editableTabs.push({
+          title: titlename,
+          name: newTabName,
+          content: linkurl
+        });
+        this.editableTabsValue = newTabName;
+      }
+
+    },
+    removeTab(targetName) {
+      let tabs = this.editableTabs;
+      let activeName = this.editableTabsValue;
+      if (activeName === targetName) {
+        tabs.forEach((tab, index) => {
+          if (tab.name === targetName) {
+            let nextTab = tabs[index + 1] || tabs[index - 1];
+            if (nextTab) {
+              activeName = nextTab.name;
+            }
+          }
+        });
+      }
+
+      this.editableTabsValue = activeName;
+      this.editableTabs = tabs.filter(tab => tab.name !== targetName);
     }
+  },
+  components:{
+    Welcome,ProductRegistration,ProductRegistrationreview,Productionquery
   },
   created() {
     this.getdata();
@@ -125,25 +164,26 @@ export default {
 </script>
 
 <style>
+  .el-menu-vertical-demo:not(.el-menu--collapse) {
+    width: 100%;
+    min-height: 100%;
+  }
 .el-header, .el-footer {
-  background-color: #B3C0D1;
+  background-color: #545c64;
   color: #333;
   line-height: 60px;
 
 }
 
 .el-aside {
-  background-color: #D3DCE6;
-  color: #333;
-
-
+  /*background-color: rgba(33, 35, 41, 0.93);*/
+  /*color: #333;*/
 }
 
 .el-main {
-  background-color: #E9EEF3;
-  color: #333;
+  /*background-color: #E9EEF3;*/
+  /*color: #333;*/
   text-align: center;
-
 }
 
 .homeWrap {
