@@ -31,29 +31,29 @@
                     active-text-color="#ffd04b">
                     <el-submenu :index="parentmenu.id+''" :key="parentmenu.id" v-for="parentmenu in menutable">
                       <template slot="title">
-                        <i :class="parentmenu.imageURL"></i>
+                        <i :class="parentmenu.imageUrl"></i>
                         <span>{{parentmenu.name}}</span>
                       </template>
                         <el-submenu :index="childmenu1.id+''"  :key="childmenu1.id" v-for="childmenu1 in parentmenu.childMenu">
                           <template slot="title">
-                            <i :class="childmenu1.imageURL"></i>
+                            <i :class="childmenu1.imageUrl"></i>
                             <span>{{childmenu1.name}}</span>
                           </template>
 
                           <el-menu-item-group>
                             <el-menu-item v-if="childmenu2.childMenu.length==0" :key="childmenu2.id"  @click="addTab(childmenu2.name,childmenu2.linkUrl)" :index="childmenu2.id+''" v-for="childmenu2 in childmenu1.childMenu">
-                              <i :class="childmenu2.imageURL"></i>{{childmenu2.name}}
+                              <i :class="childmenu2.imageUrl"></i>{{childmenu2.name}}
                             </el-menu-item>
                           </el-menu-item-group>
                           <el-submenu v-if="childmenu2.childMenu.length > 0" :key="childmenu2.id" :index="childmenu2.id+''" v-for="childmenu2 in childmenu1.childMenu">
                             <template slot="title">
-                              <i :class="childmenu2.imageURL"></i>
+                              <i :class="childmenu2.imageUrl"></i>
                               <span>{{childmenu2.name}}</span>
                             </template>
 
                             <el-menu-item-group>
                               <el-menu-item   @click="addTab(childmenu3.name,childmenu3.linkUrl)" :key="childmenu3.id" :index="childmenu3.id+''" v-for="childmenu3 in childmenu2.childMenu">
-                                <i :class="childmenu3.imageURL"></i>{{childmenu3.name}}
+                                <i :class="childmenu3.imageUrl"></i>{{childmenu3.name}}
 
                               </el-menu-item>
                             </el-menu-item-group>
@@ -87,6 +87,11 @@
   import Productionquery from "./compontents/Internalproduction/Productionquery";
   import ProductRegistration from "./compontents/Internalproduction/ProductRegistration";
   import ProductRegistrationreview from "./compontents/Internalproduction/ProductRegistrationreview";
+  import Outboundscheduling from "./compontents/Inandoutscheduling/Outboundscheduling";
+  import Storagescheduling from "./compontents/Inandoutscheduling/Storagescheduling";
+  import Outboundappregistration from "./compontents/Outboundapplication/Outboundappregistration";
+  import Outboundappregistrationreview from "./compontents/Outboundapplication/Outboundappregistrationreview";
+  import Outboundappregistrationquery from "./compontents/Outboundapplication/Outboundappregistrationquery";
 
 export default {
   name: 'app',
@@ -155,7 +160,8 @@ export default {
     }
   },
   components:{
-    Welcome,ProductRegistration,ProductRegistrationreview,Productionquery
+    Welcome,ProductRegistration,ProductRegistrationreview,Productionquery,Outboundscheduling,Storagescheduling
+    ,Outboundappregistration,Outboundappregistrationreview,Outboundappregistrationquery
   },
   created() {
     this.getdata();
@@ -183,7 +189,7 @@ export default {
 .el-main {
   /*background-color: #E9EEF3;*/
   /*color: #333;*/
-  text-align: center;
+  /*text-align: center;*/
 }
 
 .homeWrap {
