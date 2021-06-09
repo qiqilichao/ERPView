@@ -7,7 +7,7 @@
         <el-button type="primary" >提交</el-button>
       </div>
       <div>
-        <h1 style="padding-left: 500px">出库申请单</h1>
+        <h1>出库申请单</h1>
         <el-form :inline="true" :model="updstu" class="demo-form-inline" >
           <el-form-item label="出库人：">
             <el-input v-model="updstu.id" style="width: 400px"></el-input>
@@ -103,11 +103,21 @@
             <el-input v-model="updstu.age" style="width: 400px" placeholder="请输入年龄"></el-input>
           </el-form-item>
           <el-form-item style="padding-left: 150px" label="登记时间：">
-            <el-input v-model="updstu.age" style="width: 387px" placeholder="请输入年龄"></el-input>
+            <div class="block" >
+              <!--            <span class="demonstration">设置默认时间</span>-->
+              <el-date-picker style="width: 400px"
+                              v-model="updstu.age"
+                              type="datetime"
+                              placeholder="选择日期时间"
+                              default-time="12:00:00"
+                              :picker-options="pickerOptions1">
+              </el-date-picker>
+            </div>
           </el-form-item>
           <br>
           <el-form-item label="备注:" style="padding-left: 100px">
-            <el-input  resize="none" v-model="updstu.ms" style="width: 800px;height: 200px" type="textarea"></el-input>
+            <el-input   v-model="updstu.ms" style="width: 800px" type="textarea"></el-input>
+<!--        resize="none"    -->
           </el-form-item>
         </el-form>
 
@@ -199,9 +209,10 @@
 
         },
         inspro(){
-          this.$axios.post().then(response =>{
-
-          }).catch()
+          this.upddialog=true;
+          // this.$axios.post().then(response =>{
+          //
+          // }).catch()
         }
       }
     }
