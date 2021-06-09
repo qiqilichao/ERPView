@@ -87,7 +87,12 @@
   import Productionquery from "./compontents/Internalproduction/Productionquery";
   import ProductRegistration from "./compontents/Internalproduction/ProductRegistration";
   import ProductRegistrationreview from "./compontents/Internalproduction/ProductRegistrationreview";
-  import plan from "./compontents/productionplan/plan"
+  import plan from "./compontents/productionplan/plan";
+  import Outboundappregistrationquery from "./compontents/Outboundapplication/Outboundappregistrationquery";
+  import Outboundappregistrationreview from "./compontents/Outboundapplication/Outboundappregistrationreview";
+  import Outboundappregistration from "./compontents/Outboundapplication/Outboundappregistration";
+  import Storagescheduling from "./compontents/Inandoutscheduling/Storagescheduling";
+  import Outboundscheduling from "./compontents/Inandoutscheduling/Outboundscheduling";
 export default {
   name: 'app',
   data () {
@@ -155,7 +160,8 @@ export default {
     }
   },
   components:{
-    Welcome,ProductRegistration,ProductRegistrationreview,Productionquery,plan
+    Welcome,ProductRegistration,ProductRegistrationreview,Productionquery,plan,Outboundappregistration,Outboundscheduling,
+    Outboundappregistrationreview,Outboundappregistrationquery,Storagescheduling
 
   },
   created() {
