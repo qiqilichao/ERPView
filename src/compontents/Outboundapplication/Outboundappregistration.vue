@@ -190,10 +190,10 @@
                 return time.getTime() < Date.now() - 8.64e7;
               },
             },
-            outapp:[],
+            outapp:{},
             checked:false,
             upddialog:false,
-            outproapp:[]
+            outproapp:{}
           }
       },
       methods:{

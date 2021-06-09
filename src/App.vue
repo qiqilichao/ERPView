@@ -93,6 +93,11 @@
   import Outboundappregistration from "./compontents/Outboundapplication/Outboundappregistration";
   import Storagescheduling from "./compontents/Inandoutscheduling/Storagescheduling";
   import Outboundscheduling from "./compontents/Inandoutscheduling/Outboundscheduling";
+  import Makeprocessdesignsheet from "./compontents/Productprocessdesign/Makeprocessdesignsheet";
+  import Makeprocessdesignsheettoexamine from "./compontents/Productprocessdesign/Makeprocessdesignsheettoexamine";
+  import Makeprocessdesignsheettoexaminequrey from "./compontents/Productprocessdesign/Makeprocessdesignsheettoexaminequrey";
+  import Makeprocessdesignsheettoexaminechange from "./compontents/Productprocessdesign/Makeprocessdesignsheettoexaminechange";
+
 export default {
   name: 'app',
   data () {
@@ -161,7 +166,8 @@ export default {
   },
   components:{
     Welcome,ProductRegistration,ProductRegistrationreview,Productionquery,plan,Outboundappregistration,Outboundscheduling,
-    Outboundappregistrationreview,Outboundappregistrationquery,Storagescheduling
+    Outboundappregistrationreview,Outboundappregistrationquery,Storagescheduling,Makeprocessdesignsheet,Makeprocessdesignsheettoexamine,
+    Makeprocessdesignsheettoexaminequrey,Makeprocessdesignsheettoexaminechange
 
   },
   created() {

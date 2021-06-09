@@ -107,6 +107,7 @@
         <el-button type="primary" @click="b">确 定</el-button>
      </span>
       </el-dialog>
+
     </div>
 </template>
 
@@ -117,22 +118,22 @@
           return {
             tatol:0,
             storagetable:[],
-            updstorage:[],
+            updstorage: {},
             upddialog:false,
-            te1:2312323
+            te1:2312323,
           }
       },
       methods:{
         handleEdit(ids){
           this.upddialog = true;
 
-          var params = new URLSearchParams();
-          params.append("id",ids);
-
-          this.$axios.post("gather/Storagesboundscheduling",params).then(response => {
-            this.updstorage = response.data.records;
-            this.tatol =  response.data.total;
-          }).catch()
+          // var params = new URLSearchParams();
+          // params.append("id",ids);
+          //
+          // this.$axios.post("gather/Storagesboundscheduling",params).then(response => {
+          //   this.updstorage = response.data.records;
+          //   this.tatol =  response.data.total;
+          // }).catch()
         },
         //  关闭模态框
         handleClose(done) {
