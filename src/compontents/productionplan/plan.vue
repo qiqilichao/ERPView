@@ -1,126 +1,267 @@
 <template>
-      <div>
 
-              <h1>生产计划单</h1>
-        <!--主要功能 -->
-        <el-row :gutter="20">
-          <el-col :span="9" :offset="15">
-          <div>
-            <el-button @click="showadd">添加产品</el-button>
-            <el-button @click="delApply">删除产品</el-button>
-            <el-button @click="addApplyData">提交审核</el-button>
-            <el-button>返回</el-button>
-          </div>
-          </el-col>
-        </el-row>
+   <div>
+     <!--预览前的页面-->
+     <div v-show="show1">
 
-        <div>
-
-            <div>
-
-              <el-input placeholder="请输入内容" :value="str" size="small">
-                <template slot="prepend">生产理由:</template>
-              </el-input>
-              <el-input placeholder="请输入内容" size="small">
-                <template slot="prepend">供货时间:</template>
-              </el-input>
-              <el-input placeholder="请输入内容" size="small" v-model="register">
-                <template slot="prepend">登记人是:</template>
-              </el-input>
-              <el-input placeholder="请输入内容" :value="datez" size="small">
-                <template slot="prepend">登记时间:</template>
-              </el-input>
-
-            </div>
-
-            <el-table :data="applyData">
-              <el-table-column label="点选" width="90">
-                <template slot-scope="scope">
-                  <el-checkbox v-model="scope.row.checked"></el-checkbox>
-                </template>
-              </el-table-column>
-              <el-table-column
-                prop="productId"
-                label="产品名称"
-                width="170">
-              </el-table-column>
-              <el-table-column
-                prop="productName"
-                label="产品编号"
-                width="170">
-              </el-table-column>
-              <el-table-column
-                prop="productNick"
-                label="描述"
-                width="170">
-              </el-table-column>
-
-              <el-table-column label="数量" width="200">
-                <template slot-scope="scope">
-                   <el-input v-model="scope.row.num" placeholder="请输入内容"></el-input>
-                </template>
-              </el-table-column>
-
-              <el-table-column
-                prop="amountUnit"
-                label="单位"
-                width="180">
-              </el-table-column>
-              <el-table-column
-                prop="listPrice"
-                label="单价（元）"
-                width="170">
-              </el-table-column>
-              <el-table-column
-                prop="listPrice"
-                label="小计（元）"
-                width="170">
-              </el-table-column>
-
-            </el-table>
-
-            <div>
-              备注:
-              <el-input
-                type="textarea"
-                :autosize="{ minRows: 4, maxRows: 6}"
-                placeholder="请输入内容"
-               >
-              </el-input>
-            </div>
-        </div>
+       <h1>生产计划单</h1>
+       <!--主要功能 -->
+       <el-row :gutter="20">
+         <el-col :span="9" :offset="15">
+           <div>
+             <el-button @click="showadd">添加产品</el-button>
+             <el-button @click="delApply">删除产品</el-button>
+             <el-button @click="preview">预览</el-button>
+           </div>
+         </el-col>
+       </el-row>
 
 
-        <!-- 打开产品模态框-->
-        <el-dialog title="产品" :visible.sync="dialogTableVisible" width="1000px">
-          <el-table :data="gridData">
-            <el-table-column property="productId" label="产品编号" width="150"></el-table-column>
-            <el-table-column property="productName" label="产品名称" width="200"></el-table-column>
+       <div >
+         <!--顶部 -->
+         <div>
+
+           <el-input placeholder="请输入内容" :value="str" size="small">
+             <template slot="prepend">生产理由:</template>
+           </el-input>
+           <el-input placeholder="请输入内容" size="small">
+             <template slot="prepend">供货时间:</template>
+           </el-input>
+           <el-input placeholder="请输入内容" size="small" v-model="register">
+             <template slot="prepend">登记人是:</template>
+           </el-input>
+           <el-input placeholder="请输入内容" :value="datez" size="small">
+             <template slot="prepend">登记时间:</template>
+           </el-input>
+
+         </div>
+
+         <el-table :data="applyData">
+           <el-table-column label="点选" width="90">
+             <template slot-scope="scope">
+               <el-checkbox v-model="scope.row.checked"></el-checkbox>
+             </template>
+           </el-table-column>
+           <el-table-column
+             prop="productId"
+             label="产品名称"
+             width="170">
+           </el-table-column>
+           <el-table-column
+             prop="productName"
+             label="产品编号"
+             width="170">
+           </el-table-column>
+           <el-table-column
+             prop="productNick"
+             label="描述"
+             width="170">
+           </el-table-column>
+
+           <el-table-column label="数量" width="200">
+             <template slot-scope="scope">
+               <el-input v-model="scope.row.num" placeholder="请输入内容"></el-input>
+             </template>
+           </el-table-column>
+
+           <el-table-column
+             prop="amountUnit"
+             label="单位"
+             width="180">
+           </el-table-column>
+           <el-table-column
+             prop="listPrice"
+             label="单价（元）"
+             width="170">
+           </el-table-column>
+           <el-table-column
+             prop=""
+             label="小计（元）"
+             width="170">
+           </el-table-column>
+
+         </el-table>
+
+         <div>
+           备注:
+           <el-input
+             type="textarea"
+             :autosize="{ minRows: 4, maxRows: 6}"
+             placeholder="请输入内容"
+           >
+           </el-input>
+         </div>
+       </div>
+
+       <!-- 打开产品模态框-->
+       <el-dialog title="产品" :visible.sync="dialogTableVisible" width="1000px">
 
 
-            <el-table-column property="type"   label="用途类型" width="200"></el-table-column>
 
-            <el-table-column property="amountUnit" label="单位"></el-table-column>
-            <el-table-column property="listPrice" label="单价" ></el-table-column>
-            <el-table-column label="操作">
-              <template slot-scope="scope">
-                <el-button size="mini" @click="addpla(scope.row.id)">生产</el-button>
-              </template>
-            </el-table-column>
-          </el-table>
-          <!-- 分页-->
-          <el-pagination
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-            :current-page="pageno"
-            :page-sizes="[5, 10, 15, 20]"
-            :page-size="pagesize"
-            layout="total, sizes, prev, pager, next, jumper"
-            :total="total">
-          </el-pagination>
-        </el-dialog>
+         <el-form :inline="true" :model="formInline" class="demo-form-inline">
+           <el-form-item label="商品名">
+             <el-input v-model="formInline.name" placeholder="商品名"></el-input>
+           </el-form-item>
+           <el-form-item>
+             <el-button type="primary" @click="onSubmit">查询</el-button>
+           </el-form-item>
+         </el-form>
 
-      </div>
+         <el-table :data="gridData">
+           <el-table-column property="productId" label="产品编号" width="150"></el-table-column>
+           <el-table-column property="productName" label="产品名称" width="200"></el-table-column>
+
+
+           <el-table-column property="type"   label="用途类型" width="200"></el-table-column>
+
+           <el-table-column property="amountUnit" label="单位"></el-table-column>
+           <el-table-column property="listPrice" label="单价" ></el-table-column>
+           <el-table-column label="操作">
+             <template slot-scope="scope">
+               <el-button size="mini" @click="addpla(scope.row.id)">生产</el-button>
+             </template>
+           </el-table-column>
+         </el-table>
+         <!-- 分页-->
+         <el-pagination
+           @size-change="handleSizeChange"
+           @current-change="handleCurrentChange"
+           :current-page="pageno"
+           :page-sizes="[5, 10, 15, 20]"
+           :page-size="pagesize"
+           layout="total, sizes, prev, pager, next, jumper"
+           :total="total">
+         </el-pagination>
+       </el-dialog>
+
+     </div>
+
+
+
+     <!--预览后的页面-->
+     <div v-show="show2">
+
+       <h1>生产计划单</h1>
+       <!--主要功能 -->
+       <el-row :gutter="20">
+         <el-col :span="9" :offset="15">
+           <div>
+             <el-button @click="addApplyData">提交审核</el-button>
+             <el-button @click="outpreview">返回</el-button>
+           </div>
+         </el-col>
+       </el-row>
+
+
+       <div class="">
+         <!--顶部 -->
+         <div>
+
+           <el-input placeholder="请输入内容" :value="str" size="small">
+             <template slot="prepend">生产理由:</template>
+           </el-input>
+           <el-input placeholder="请输入内容" size="small">
+             <template slot="prepend">供货时间:</template>
+           </el-input>
+           <el-input placeholder="请输入内容" size="small" v-model="register">
+             <template slot="prepend">登记人是:</template>
+           </el-input>
+           <el-input placeholder="请输入内容" :value="datez" size="small">
+             <template slot="prepend">登记时间:</template>
+           </el-input>
+
+         </div>
+
+         <el-table :data="applyData">
+           <el-table-column label="点选" width="90">
+             <template slot-scope="scope">
+               <el-checkbox  :value="scope.row.checked"></el-checkbox>
+             </template>
+           </el-table-column>
+           <el-table-column
+             prop="productId"
+             label="产品名称"
+             width="170">
+           </el-table-column>
+           <el-table-column
+             prop="productName"
+             label="产品编号"
+             width="170">
+           </el-table-column>
+           <el-table-column
+             prop="productNick"
+             label="描述"
+             width="170">
+           </el-table-column>
+
+           <el-table-column label="数量" width="200">
+             <template slot-scope="scope">
+               <el-input :value="scope.row.num" placeholder="请输入内容"></el-input>
+             </template>
+           </el-table-column>
+
+           <el-table-column
+             prop="amountUnit"
+             label="单位"
+             width="180">
+           </el-table-column>
+           <el-table-column
+             prop="listPrice"
+             label="单价（元）"
+             width="170">
+           </el-table-column>
+           <el-table-column
+             prop="listPrice"
+             label="小计（元）"
+             width="170">
+           </el-table-column>
+
+         </el-table>
+
+         <div>
+           备注:
+           <el-input
+             type="textarea"
+             :autosize="{ minRows: 4, maxRows: 6}"
+             placeholder="请输入内容"
+           >
+           </el-input>
+         </div>
+       </div>
+
+       <!-- 打开产品模态框-->
+     <!--  <el-dialog title="产品" :visible.sync="dialogTableVisible" width="1000px">
+         <el-table :data="gridData">
+           <el-table-column property="productId" label="产品编号" width="150"></el-table-column>
+           <el-table-column property="productName" label="产品名称" width="200"></el-table-column>
+
+
+           <el-table-column property="type"   label="用途类型" width="200"></el-table-column>
+
+           <el-table-column property="amountUnit" label="单位"></el-table-column>
+           <el-table-column property="listPrice" label="单价" ></el-table-column>
+           <el-table-column label="操作">
+             <template slot-scope="scope">
+               <el-button size="mini" @click="addpla(scope.row.id)">生产</el-button>
+             </template>
+           </el-table-column>
+         </el-table>
+         &lt;!&ndash; 分页&ndash;&gt;
+         <el-pagination
+           @size-change="handleSizeChange"
+           @current-change="handleCurrentChange"
+           :current-page="pageno"
+           :page-sizes="[5, 10, 15, 20]"
+           :page-size="pagesize"
+           layout="total, sizes, prev, pager, next, jumper"
+           :total="total">
+         </el-pagination>
+       </el-dialog>-->
+
+     </div>
+   </div>
+
+
 </template>
 
 <script>
@@ -139,6 +280,11 @@
           applyData:[],
           remark:"",
           register:"",
+          show1:true,
+          show2:false,
+          formInline: {
+            name: ""
+          }
          // checked:false,
 
 
@@ -171,6 +317,7 @@
                          tiem.remark=this.remark;
 
                   return tiem.checked==true;
+
                 });
 
                 if(newapplydata.length==0){
@@ -197,6 +344,7 @@
 
                          if(response.data==true){
                            this.delApply()
+                           this.outpreview()
                            this.$message({
                              showClose: true,
                              message: '提交成功',
@@ -226,7 +374,9 @@
            var params=new URLSearchParams();
                params.append("pageno", this.pageno);
                params.append("pagesize",this.pagesize);
-           this.$axios.post("/apply/DfilePage").then((response)=>{
+               params.append("productName",this.formInline.name);
+
+           this.$axios.post("/apply/DfilePage",params).then((response)=>{
                  response.data.records.forEach((item)=>{
                      if(item.type=="Y001-1"){
                        item.type="商品"
@@ -244,27 +394,21 @@
         //打开添加模态框
         showadd() {
           this.dialogTableVisible = true;
+          this.formInline.name=" ";
           this.getDfile();
         },
 
         //生产计划添加商品
         addpla(id){
 
-             /* var params=new URLSearchParams()
-
-                   params.append("amount",this.amount);
-                   params.append("remark",this.date);
-                   params.append("register",this.register);
-                   params.append("remark",this.remark);*/
                   var params=new URLSearchParams()
                    params.append("id",id)
-
                    this.$axios.post("apply/getByDid",params).then((response)=>{
-                       //显示临时的生产商品数据
-
-                         this.applyData.push(response.data)
-
-
+                       //显示临时的生产商品数据apply/getByDid
+                            var obj=this.applyData.find((item)=>{return item.id==response.data.id})
+                            if(obj!=null)
+                                  return;
+                           this.applyData.push(response.data)
                     }).catch()
 
         },
@@ -296,6 +440,22 @@
                  this.applyData.splice(index,newapplydata.length);
                }
              })
+        },
+
+        //预览
+        preview(){
+              this.show1=false;
+              this.show2=true;
+        },
+         //推出预览
+        outpreview(){
+          this.show1=true;
+          this.show2=false;
+        },
+
+        //模态框的查询
+        onSubmit(){
+             this.getDfile()
         }
 
       },
