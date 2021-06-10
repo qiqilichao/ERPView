@@ -178,7 +178,7 @@
               label: '赠送'
             }, {
               value: 'C002-3',
-              label: '内部借领  '
+              label: '内部借领'
             }, {
               value: 'C002-4',
               label: '其他借领'
@@ -203,7 +203,7 @@
             .then(_ => {
               done();
             })
-            .catch(_ => {});
+            .catch(e => {});
         },
         handleEdit(ids){
 

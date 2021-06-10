@@ -54,7 +54,7 @@
           <span>{{updstu.cpid}}</span>
         </el-form-item><br>
         <el-form-item label="设计人：">
-          <el-input v-model="updstu.qweqwe" style="width: 386px" placeholder="请输入年龄"></el-input>
+          <el-input v-model="updstu.qweqwe" style="width: 386px" placeholder="请输入设计人"></el-input>
         </el-form-item>
       </el-form>
       <el-table :data="outapp"  border style="width: 100%">
@@ -134,7 +134,7 @@
       </el-form>
       </div>
       <div v-show="show2">
-        <el-button type="primary" @click="">提交</el-button>
+        <el-button type="primary" @click="goinsprolist">提交</el-button>
         <el-button type="info" @click="showdwon">返回</el-button>
         <h1>生产工序设计单</h1>
         <el-form :inline="true" :model="updstu" class="demo-form-inline">
@@ -291,45 +291,46 @@
             show2:false
           }
       },
-      methods:{
+      methods: {
         //  关闭模态框
         handleClose(done) {
           this.$confirm('确认关闭？')
             .then(_ => {
               done();
             })
-            .catch(_ => {});
+            .catch(_ => {
+            });
         },
         //这是打开工序对话框的方法
-        upprolist(){
-          this.$axios.post("gx/queryprolist").then(response =>{
-            this.prolist=response.data;
-            this.sc=true;
+        upprolist() {
+          this.$axios.post("gx/queryprolist").then(response => {
+            this.prolist = response.data;
+            this.sc = true;
           }).catch(e => alert("错误"))
         },
-        insprolist(index,ids){
+        insprolist(index, ids) {
 
-          if (this.outapp.length>0){
-            var a=this.outapp.find(item =>{
-              return item.id==ids
+          if (this.outapp.length > 0) {
+            var a = this.outapp.find(item => {
+              return item.id == ids
             })
-            if (a==null){
+            if (a == null) {
               this.outapp.push(this.prolist[index]);
             }
-          }else {
+          } else {
             this.outapp.push(this.prolist[index]);
           }
         },
-        delprolist(){
-          var newoutapp= this.outapp.filter(item => item.checked==true)
+        delprolist() {
+          var newoutapp = this.outapp.filter(item => item.checked == true)
           console.log(newoutapp)
-          if (newoutapp.length!=0){
-          this.outapp.forEach((item,index) => {
-            if(item.checked){
-               this.outapp.splice(index,newoutapp.length)
-            }
-          })
-          }else {
+          if (newoutapp.length != 0) {
+            this.outapp.forEach((item, index) => {
+              if (item.checked) {
+                this.outapp.splice(index, newoutapp.length)
+              }
+            })
+          } else {
             this.$message({
               showClose: true,
               message: '请选择一条工序删除',
@@ -337,34 +338,29 @@
             });
           }
         },
-        aa(ids){
+        aa(ids) {
           console.log("blur")
-          var row = this.outapp.find((item)=>{return item.id == ids;});
-          if (Number(row.labourHourAmount)!=NaN && Number(row.costPrice) ){
+          var row = this.outapp.find((item) => {
+            return item.id == ids;
+          });
+          if (Number(row.labourHourAmount) != NaN && Number(row.costPrice)) {
             row.subtotal = Number(row.labourHourAmount) * Number(row.costPrice);
           }
         },
-        showUp(){
-          this.show1=false;
-          this.show2=true;
+        showUp() {
+          this.show1 = false;
+          this.show2 = true;
           // this.prolist.forEach(item =>{
           //   item.subtotal = Number(item.labourHourAmount) * Number(item.costPrice);
           // })
         },
-        showdwon(){
-          this.show1=true;
-          this.show2=false
+        showdwon() {
+          this.show1 = true;
+          this.show2 = false
+        },
+        goinsprolist(){
+          this.prolist
         }
-      },
-      computed:{
-          gscbxj(){
-            console.log(111)
-            var ss= this.outapp.forEach(item =>{
-               return Number(item.labourHourAmount)*Number(item.costPrice)
-              // return item.subtotal
-            })
-            console.log(ss)
-          }
       }
     }
 </script>
