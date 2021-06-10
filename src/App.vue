@@ -97,6 +97,7 @@
   import Makeprocessdesignsheettoexamine from "./compontents/Productprocessdesign/Makeprocessdesignsheettoexamine";
   import Makeprocessdesignsheettoexaminequrey from "./compontents/Productprocessdesign/Makeprocessdesignsheettoexaminequrey";
   import Makeprocessdesignsheettoexaminechange from "./compontents/Productprocessdesign/Makeprocessdesignsheettoexaminechange";
+import Shejidan from "./compontents/Chanpingsheji/Shejidan"
 
 export default {
   name: 'app',
@@ -167,7 +168,7 @@ export default {
   components:{
     Welcome,ProductRegistration,ProductRegistrationreview,Productionquery,plan,Outboundappregistration,Outboundscheduling,
     Outboundappregistrationreview,Outboundappregistrationquery,Storagescheduling,Makeprocessdesignsheet,Makeprocessdesignsheettoexamine,
-    Makeprocessdesignsheettoexaminequrey,Makeprocessdesignsheettoexaminechange
+    Makeprocessdesignsheettoexaminequrey,Makeprocessdesignsheettoexaminechange,Shejidan
 
   },
   created() {
