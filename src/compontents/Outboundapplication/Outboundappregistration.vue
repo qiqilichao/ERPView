@@ -169,7 +169,7 @@
         name: "Outboundappregistration",
       data(){
           return {
-            updstu:[],
+            updstu: {},
             options1: [{
               value: 'C002-1',
               label: '生产领料'
@@ -190,10 +190,10 @@
                 return time.getTime() < Date.now() - 8.64e7;
               },
             },
-            outapp:{},
+            outapp:[],
             checked:false,
             upddialog:false,
-            outproapp:{}
+            outproapp:[]
           }
       },
       methods:{
