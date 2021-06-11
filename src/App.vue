@@ -97,12 +97,7 @@
   import Makeprocessdesignsheettoexamine from "./compontents/Productprocessdesign/Makeprocessdesignsheettoexamine";
   import Makeprocessdesignsheettoexaminequrey from "./compontents/Productprocessdesign/Makeprocessdesignsheettoexaminequrey";
   import Makeprocessdesignsheettoexaminechange from "./compontents/Productprocessdesign/Makeprocessdesignsheettoexaminechange";
-  import Shejidan from "./compontents/Chanpingsheji/Shejidan";
-  import Moduleselect from "./compontents/Chanpingsheji/Moduleselect";
-  import ModuleShenhe from "./compontents/Chanpingsheji/ModuleShenhe";
-  import Moduleupdate from "./compontents/Chanpingsheji/Moduleupdate";
-  import ProductFileRegistration from "./compontents/Internalproduction/ProductFileRegistration"
-
+  import ApplyExamine from "./compontents/productionplan/ApplyExamine"
 export default {
   name: 'app',
   data () {
@@ -172,8 +167,7 @@ export default {
   components:{
     Welcome,ProductRegistration,ProductRegistrationreview,Productionquery,plan,Outboundappregistration,Outboundscheduling,
     Outboundappregistrationreview,Outboundappregistrationquery,Storagescheduling,Makeprocessdesignsheet,Makeprocessdesignsheettoexamine,
-    Makeprocessdesignsheettoexaminequrey,Makeprocessdesignsheettoexaminechange,Shejidan,Moduleselect,ModuleShenhe,Moduleupdate,
-    ProductFileRegistration
+    Makeprocessdesignsheettoexaminequrey,Makeprocessdesignsheettoexaminechange,ApplyExamine
 
   },
   created() {
