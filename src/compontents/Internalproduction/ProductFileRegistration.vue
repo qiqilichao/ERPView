@@ -53,6 +53,20 @@
                   </el-select>
                 </el-form-item>
               </el-col>
+              <el-col :span="10"  :offset="4">
+                <el-form-item label="计量单位" prop="personalUnit">
+                  <el-select v-model="Dfile.personalUnit" placeholder="请选择类型">
+                    <el-option label="台" value="台"></el-option>
+                    <el-option label="片" value="片"></el-option>
+                    <el-option label="箱" value="箱"></el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+              <el-col :span="10" >
+                <el-form-item label="保修期" prop="warranty">
+                  <el-input v-model="Dfile.warranty"></el-input>
+                </el-form-item>
+              </el-col>
               <el-col :span="10" :offset="4">
                 <el-form-item label="市场单价" prop="listPrice">
                   <el-input v-model="Dfile.listPrice"></el-input>
@@ -71,7 +85,7 @@
               <el-col :span="9" :offset="4">
               建档时间： <span>{{Dfile.registerTime}}</span>
             </el-col>
-              <el-col :span="24">
+              <el-col :span="2">
                 <el-form-item>
                   <el-button type="primary" @click="submitForm('Dfile')">立即创建</el-button>
                   <el-button @click="resetForm('Dfile')">重置</el-button>
@@ -96,6 +110,8 @@
               firstKindName: '',
               secondKindName: '',
               thirdKindName: '',
+              personalUnit:'',
+              warranty:'',
               type: '',
               productClass: '',
               listPrice: '',

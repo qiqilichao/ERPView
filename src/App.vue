@@ -101,6 +101,7 @@
   import Moduleselect from "./compontents/Chanpingsheji/Moduleselect";
   import ModuleShenhe from "./compontents/Chanpingsheji/ModuleShenhe";
   import Moduleupdate from "./compontents/Chanpingsheji/Moduleupdate";
+  import ProductFileRegistration from "./compontents/Internalproduction/ProductFileRegistration"
 
 export default {
   name: 'app',
@@ -171,7 +172,8 @@ export default {
   components:{
     Welcome,ProductRegistration,ProductRegistrationreview,Productionquery,plan,Outboundappregistration,Outboundscheduling,
     Outboundappregistrationreview,Outboundappregistrationquery,Storagescheduling,Makeprocessdesignsheet,Makeprocessdesignsheettoexamine,
-    Makeprocessdesignsheettoexaminequrey,Makeprocessdesignsheettoexaminechange,Shejidan,Moduleselect,ModuleShenhe,Moduleupdate
+    Makeprocessdesignsheettoexaminequrey,Makeprocessdesignsheettoexaminechange,Shejidan,Moduleselect,ModuleShenhe,Moduleupdate,
+    ProductFileRegistration
 
   },
   created() {
