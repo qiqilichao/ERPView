@@ -234,7 +234,7 @@
           params.append("pagesize", this.pagesize);
           params.append("firstKindName", this.firstKindName);
 
-          this.$axios.get("cpshenghetg.action", params).then((response) => {
+          this.$axios.get("dfile/cpshenghetg.action", params).then((response) => {
             _this.dfiletable = response.data.records;
             _this.total = response.data.total;
           }).catch();
@@ -259,7 +259,7 @@
           var params = new URLSearchParams();
           params.append("id", id);
 
-          this.$axios.post("shejiselectbyid.action", params).then(function (response) {
+          this.$axios.post("dfile/shejiselectbyid.action", params).then(function (response) {
             _this.wuliaozuc = response.data;
           }).catch();
         },
@@ -267,7 +267,7 @@
         wuliaobtnsave(){
           var _this = this;
           this.wuliaobtnsaveshow = true;
-          this.$axios.post("wuliaoselect.action").then(function (response) {
+          this.$axios.post("dfile/wuliaoselect.action").then(function (response) {
             _this.wuliaosaveform = response.data;
           }).catch();
         },
@@ -313,10 +313,21 @@
         },
         //预览
         wuliaoupdate(){
+          var _this = this;
+           var yu= this.wuliaodata.length;
+           if(yu>0){
+             this.wuliaobtnsaveshow = false;
+             this.shejishow=false;
+             this.yulan=true;
+           }else {
+             alert("物料不能为空，请添加物料！！！");
+             this.wuliaobtnsaveshow = true;
+             this.$axios.post("dfile/wuliaoselect.action").then(function (response) {
+               _this.wuliaosaveform = response.data;
 
-          this.wuliaobtnsaveshow = false;
-          this.shejishow=false;
-          this.yulan=true;
+             }).catch();
+           }
+
         },
         //退出预览
         yulanfan(){
@@ -329,18 +340,13 @@
           var _this =this;
           //组装数据(普通数据+特殊文件)   formData  html5提供的类型
           var params = new FormData();
-            params.append("productName",this.wuliaozuc.productName);
-          params.append("productId",this.wuliaozuc.productId);
-          params.append("designer",this.wuliaozuc.designer);
-          params.append("moduleDescribe",this.wuliaozuc.moduleDescribe);
-          params.append("registerTime",this.wuliaozuc.registerTime);
-          params.append("moduleDescribe",this.wuliaozuc.moduleDescribe);
+
           Object.keys(this.wuliaozuc).forEach((item)=>{
             params.append(item,this.wuliaozuc[item]);
           })
-          this.$axios({
+            this.$axios({
             method: 'post',
-            url: 'moduleDetailadd.action',
+            url: 'moduleDetail/moduleDetailadd.action',
             data:params,
           }).then(function (response) {
               if (response.data == true) {
@@ -367,15 +373,15 @@
           let year = date.getFullYear(); // 年
           let month = date.getMonth() + 1; // 月
           let day = date.getDate(); // 日
-          let week = date.getDay(); // 星期
-          let weekArr = [ "星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六" ];
+          //let week = date.getDay(); // 星期
+          //let weekArr = [ "星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六" ];
           let hour = date.getHours(); // 时
           hour = hour < 10 ? "0" + hour : hour; // 如果只有一位，则前面补零
           let minute = date.getMinutes(); // 分
           minute = minute < 10 ? "0" + minute : minute; // 如果只有一位，则前面补零
           let second = date.getSeconds(); // 秒
           second = second < 10 ? "0" + second : second; // 如果只有一位，则前面补零
-          this.wuliaozuc.registerTime= `${year}/${month}/${day} ${hour}:${minute}:${second} ${weekArr[week]}`;
+          this.wuliaozuc.registerTime= `${year}-${month}-${day} ${hour}:${minute}:${second}`;
         }
       },
       created(){
