@@ -61,9 +61,13 @@
             </el-form-item>
           </el-form>
           <el-row :gutter="24">
-            <el-col :span="6" :offset="18">
+            <el-col :span="14" :offset="10">
               <div>
-                <el-button >确定</el-button>
+                <template>
+                  <el-radio v-model="radio" label="S001-1">未通过</el-radio>
+                  <el-radio v-model="radio" label="S001-2">通过</el-radio>
+                </template>
+                <el-button @click="saveExamine">确定</el-button>
                 <el-button >取消</el-button>
               </div>
             </el-col>
@@ -94,7 +98,7 @@
             <el-row :gutter="24">
               <el-col :span="12">
                 <div>
-                  <el-input placeholder="" size="small"  :value="formInline.checker">
+                  <el-input placeholder="" size="small"  :value="user">
                     <template slot="prepend">审核人:</template>
                   </el-input>
                 </div>
@@ -133,6 +137,9 @@
               aid:"",
               pagesize:8,
               pageno:1,
+              radio:"S001-1",
+              applyid:0,
+              user:"yy",
               dialogTableVisible:false,
               applyArr:[],
               gridData:[],
@@ -189,10 +196,38 @@
                  params.append("id",id);
             this.$axios.post("apply/getBApplyid",params).then((response)=>{
                       this.formInline=response.data;
+                      this.applyid=response.data.id;
                       this.gridData.push( this.formInline)
                       this.getDate()
             }).catch();
-          }
+          },
+           //提交审核的结果
+            saveExamine(){
+               // alert(this.applyid+",,"+this.radio)
+
+              var params=new URLSearchParams();
+                  params.append("id",this.applyid);
+                  params.append("checker",this.user);
+                  params.append("checkTag",this.radio);
+
+                  this.$axios.post("apply/chenggApplychecker",params).then((response)=>{
+                         if(response.data) {
+                           this.dialogTableVisible=false;
+                           this.getApplyData();
+                           this.$message({
+                             showClose: true,
+                             message: '提交审核成功',
+                             type: 'success'
+                           });
+                         }else{
+                           this.$message({
+                             showClose: true,
+                             message: '提交审核失败',
+                             type: 'error'
+                           });
+                         }
+                  }).catch();
+            }
         },
       created() {
                this.getApplyData()
