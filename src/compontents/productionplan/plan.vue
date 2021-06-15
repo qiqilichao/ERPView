@@ -21,11 +21,13 @@
          <!--顶部 -->
          <div>
 
-           <el-input placeholder="请输入内容" :value="str" size="small">
+           <el-input placeholder="请输入内容" :value="str"  size="small">
              <template slot="prepend">生产理由:</template>
            </el-input>
-           <el-input placeholder="请输入内容" size="small">
-             <template slot="prepend">供货时间:</template>
+           <el-input  size="small"  placeholder="请输入内容">
+             <template slot="prepend">
+               供货时间:
+             </template>
            </el-input>
            <el-input placeholder="请输入内容" size="small" v-model="register">
              <template slot="prepend">登记人是:</template>
@@ -36,7 +38,7 @@
 
          </div>
 
-         <el-table :data="applyData">
+                <el-table :data="applyData">
            <el-table-column label="点选" width="90">
              <template slot-scope="scope">
                <el-checkbox v-model="scope.row.checked"></el-checkbox>
@@ -279,12 +281,13 @@
           gridData: [],
           applyData:[],
           remark:"",
+          value1:"",
           register:"",
           show1:true,
           show2:false,
           formInline: {
             name: ""
-          }
+          },
          // checked:false,
 
 
@@ -320,15 +323,6 @@
 
                 });
 
-                if(newapplydata.length==0){
-                  this.$message({
-                    message: '你没有点选产品',
-                    type: 'warning'
-
-                  });
-
-                  return;
-                }
 
                  this.$confirm('确定提交这个生产计划吗？', '提示', {
                    confirmButtonText: '确定',
@@ -405,9 +399,11 @@
                    params.append("id",id)
                    this.$axios.post("apply/getByDid",params).then((response)=>{
                        //显示临时的生产商品数据apply/getByDid
+
                             var obj=this.applyData.find((item)=>{return item.id==response.data.id})
                             if(obj!=null)
                                   return;
+                            response.data.num=1;
                            this.applyData.push(response.data)
                     }).catch()
 
@@ -444,6 +440,15 @@
 
         //预览
         preview(){
+          var newapplydata=this.applyData.filter((tiem)=>{return tiem.checked==true;});
+          if(newapplydata.length==0){
+            this.$message({
+              message: '你没有点选产品',
+              type: 'warning'
+
+            });
+            return;
+          }
               this.show1=false;
               this.show2=true;
         },
