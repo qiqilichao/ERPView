@@ -97,13 +97,18 @@
   import Makeprocessdesignsheettoexamine from "./compontents/Productprocessdesign/Makeprocessdesignsheettoexamine";
   import Makeprocessdesignsheettoexaminequrey from "./compontents/Productprocessdesign/Makeprocessdesignsheettoexaminequrey";
   import Makeprocessdesignsheettoexaminechange from "./compontents/Productprocessdesign/Makeprocessdesignsheettoexaminechange";
+  import ApplyExamine from "./compontents/productionplan/ApplyExamine"
+  import QueryApply from "./compontents/productionplan/QueryApply"
+  import Shejidan from "./compontents/Chanpingsheji/Shejidan"
+  import ModuleShenhe from "./compontents/Chanpingsheji/ModuleShenhe"
+
   import ApplyExamine from "./compontents/productionplan/ApplyExamine";
   import ProductFileRegistration from "./compontents/Internalproduction/ProductFileRegistration";
   import Reviewproductfileregistration from "./compontents/Internalproduction/Reviewproductfileregistration";
   import ProductFileEnquiry from "./compontents/Internalproduction/ProductFileEnquiry";
 
 
-export default {
+  export default {
   name: 'app',
   data () {
     return {
@@ -172,8 +177,8 @@ export default {
   components:{
     Welcome,ProductRegistration,ProductRegistrationreview,Productionquery,plan,Outboundappregistration,Outboundscheduling,
     Outboundappregistrationreview,Outboundappregistrationquery,Storagescheduling,Makeprocessdesignsheet,Makeprocessdesignsheettoexamine,
-    Makeprocessdesignsheettoexaminequrey,Makeprocessdesignsheettoexaminechange,ApplyExamine,ProductFileRegistration,
-    Reviewproductfileregistration,ProductFileEnquiry
+    Makeprocessdesignsheettoexaminequrey,Makeprocessdesignsheettoexaminechange,ApplyExamine,QueryApply,Shejidan,ModuleShenhe,
+    ProductFileRegistration,Reviewproductfileregistration,ProductFileEnquiry
 
   },
   created() {

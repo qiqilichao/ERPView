@@ -51,7 +51,6 @@
         <el-dialog title="物料组成设计单" :visible="shejishow" id="shejishow">
           至少要有一种物料（数量可为0）<el-button>PDF打印</el-button><el-button @click="wuliaobtnsave">添加物料</el-button><el-button @click="wudelete">删除物料</el-button><el-button @click="wuliaoupdate">预览</el-button><el-button  @click="shejishow = false">返回</el-button>
         <el-form :inline="true" label-width="80px" :modal="wuliaozuc" class="wuliaod">
-
             <h3>物料组成设计单</h3>
           <el-row>
             <el-col :span="12"> 产品名称: {{wuliaozuc.productName}}</el-col>
@@ -87,12 +86,12 @@
           <el-row>
             <el-col :span="12">
               <el-form-item label="登记人">
-                <el-input clearable v-model="wuliaozuc.moduleDescribe"></el-input>
+                <el-input clearable v-model="wuliaozuc.register"></el-input>
               </el-form-item>
                 </el-col>
             <el-col :span="12">
               <el-form-item label="时间">
-                <span>{{wuliaozuc.registerTime}}</span>
+                <span>{{registerTime}}</span>
               </el-form-item>
             </el-col>
           </el-row>
@@ -160,12 +159,12 @@
             <el-row>
               <el-col :span="12">
                 <el-form-item label="登记人">
-                  {{wuliaozuc.moduleDescribe}}
+                  {{wuliaozuc.register}}
                 </el-form-item>
               </el-col>
               <el-col :span="12">
                 <el-form-item label="时间">
-                  <span>{{wuliaozuc.registerTime}}</span>
+                  <span>{{registerTime}}</span>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -223,7 +222,7 @@
             wuliaobtnsaveshow:false,
             wuliaosaveform:[],
             yulan:false,
-
+            registerTime:"",
           }
         },
       methods: {
@@ -283,6 +282,7 @@
             })
             if (a==null){
               this.wuliaodata.push(this.wuliaosaveform[index]);
+
             }
           }else {
             this.wuliaodata.push(this.wuliaosaveform[index]);
@@ -335,68 +335,64 @@
           this.shejishow=true;
         },
         //保存数据
-        wuliaosave(){
+      wuliaosave(){
           //添加按钮按下，保存到db
           var _this =this;
-          //组装数据(普通数据+特殊文件)   formData  html5提供的类型
-          var params = new FormData();
+     // this.wuliaodata[0].push({'productname':this.wuliaozuc.productName,'productId':this.wuliaozuc.productId,'designer':this.wuliaozuc.designer,'register':this.wuliaozuc.register,'moduleDescribe':this.wuliaozuc.moduleDescribe});
+    this.wuliaodata.forEach((item)=>{
+          item["productname"]=this.wuliaozuc.productName;
+          item["productid"]=this.wuliaozuc.productId;
+          item["designer"]=this.wuliaozuc.designer;
+          item["moduleDescribe"]=this.wuliaozuc.moduleDescribe;
+          item["register"]=this.wuliaozuc.register;
+          item["did"]= this.wuliaozuc.id;
+        })
 
-          Object.keys(this.wuliaozuc).forEach((item)=>{
-            params.append(item,this.wuliaozuc[item]);
-          })
-            this.$axios({
-            method: 'post',
-            url: 'moduleDetail/moduleDetailadd.action',
-            data:params,
-          }).then(function (response) {
-              if (response.data == true) {
-                _this.$notify({
-                  title: '成功',
-                  message: '添加成功',
-                  type: 'success'
-                });
-              } else {
-                _this.$notify({
-                  title: '失败',
-                  message: '添加失败',
-                  type: 'danger'
-                });
-        }
-          })
-        },
-        //时间
-        currentTime() {
-          setInterval(this.formatDate, 500);
-        },
-        formatDate() {
-          let date = new Date();
-          let year = date.getFullYear(); // 年
-          let month = date.getMonth() + 1; // 月
-          let day = date.getDate(); // 日
-          //let week = date.getDay(); // 星期
-          //let weekArr = [ "星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六" ];
-          let hour = date.getHours(); // 时
-          hour = hour < 10 ? "0" + hour : hour; // 如果只有一位，则前面补零
-          let minute = date.getMinutes(); // 分
-          minute = minute < 10 ? "0" + minute : minute; // 如果只有一位，则前面补零
-          let second = date.getSeconds(); // 秒
-          second = second < 10 ? "0" + second : second; // 如果只有一位，则前面补零
-          this.wuliaozuc.registerTime= `${year}-${month}-${day} ${hour}:${minute}:${second}`;
-        }
-      },
-      created(){
-        this.getmenudata();
-      },
-      mounted() {
-          this.currentTime();
-      },
-    // 销毁定时器
-    beforeDestroy() {
-      if (this.formatDate) {
-        clearInterval(this.formatDate); // 在Vue实例销毁前，清除时间定时器
-      }
-    }
-    }
+        this.$axios.post("module/moduleadd.action",JSON.stringify(this.wuliaodata),{headers:{"Content-Type":"application/json"}}).then(response =>{
+          if (response.data == true) {
+            this.$message({
+              message: '添加成功，请去审核',
+              type: 'success'
+            });
+            this.yulan=false;
+            this.getmenudata();
+          }
+
+})
+},
+
+currentTime() {
+setInterval(this.formatDate, 500);
+},
+formatDate() {
+let date = new Date();
+let year = date.getFullYear(); // 年
+let month = date.getMonth() + 1; // 月
+let day = date.getDate(); // 日
+//let week = date.getDay(); // 星期
+//let weekArr = [ "星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六" ];
+let hour = date.getHours(); // 时
+hour = hour < 10 ? "0" + hour : hour; // 如果只有一位，则前面补零
+let minute = date.getMinutes(); // 分
+minute = minute < 10 ? "0" + minute : minute; // 如果只有一位，则前面补零
+let second = date.getSeconds(); // 秒
+second = second < 10 ? "0" + second : second; // 如果只有一位，则前面补零
+this.registerTime= `${year}-${month}-${day} ${hour}:${minute}:${second}`;
+}
+},
+created(){
+this.getmenudata();
+},
+mounted() {
+this.currentTime();
+},
+// 销毁定时器
+beforeDestroy() {
+if (this.formatDate) {
+clearInterval(this.formatDate); // 在Vue实例销毁前，清除时间定时器
+}
+}
+}
 </script>
 
 <style scoped>
