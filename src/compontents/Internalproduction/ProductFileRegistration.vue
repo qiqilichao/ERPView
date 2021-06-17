@@ -73,8 +73,8 @@
                 </el-form-item>
               </el-col>
               <el-col :span="10" >
-                <el-form-item label="成本单价" prop="realCostPrice">
-                  <el-input v-model="Dfile.realCostPrice"></el-input>
+                <el-form-item label="产品经理" prop="responsiblePerson">
+                  <el-input v-model="Dfile.responsiblePerson"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="10" :offset="4">
@@ -82,10 +82,11 @@
                   <el-input v-model="Dfile.costPrice"></el-input>
                 </el-form-item>
               </el-col>
+
               <el-col :span="9" :offset="4">
               建档时间： <span>{{Dfile.registerTime}}</span>
             </el-col>
-              <el-col :span="2">
+              <el-col :span="24">
                 <el-form-item>
                   <el-button type="primary" @click="submitForm('Dfile')">立即创建</el-button>
                   <el-button @click="resetForm('Dfile')">重置</el-button>
@@ -108,6 +109,7 @@
               productName: '',
               factoryName: '',
               firstKindName: '',
+              responsiblePerson:'',
               secondKindName: '',
               thirdKindName: '',
               personalUnit:'',
