@@ -187,7 +187,7 @@
           </el-table-column>
           <el-table-column
             prop="subtotal"
-            label="工时成功小计（元）"
+            label="工时成本小计（元）"
             width="190">
           </el-table-column>
         </el-table>
@@ -234,7 +234,7 @@
         <el-select v-model="Search.secondKindId" clearable @change="second" placeholder="请选择">
           <el-option
             v-for="item in secondoption"
-            :key="item.kindId"
+            :key="item.id"
             :label="item.kindName"
             :value="item.kindId">
           </el-option>
@@ -244,7 +244,7 @@
         <el-select v-model="Search.thirdKindId" clearable placeholder="请选择">
           <el-option
             v-for="item in thirdoption"
-            :key="item.kindId"
+            :key="item.id"
             :label="item.kindName"
             :value="item.kindId">
           </el-option>
@@ -254,7 +254,6 @@
         <div class="block">
           <el-date-picker
             v-model="datelist"
-            @change="bb"
             type="daterange"
             range-separator="至"
             value-format="yyyy-MM-dd"
@@ -353,7 +352,11 @@
             pageno:1,
             pagesize:5,
             total:0,
-            Search:{},
+            Search:{
+              // firstKindId:'',
+              // secondKindId:'',
+              // thirdKindId:''
+            },
             firestoption:[],
             secondoption:[],
             thirdoption:[],
@@ -388,7 +391,6 @@
         //打开指定设计单的模态框
         upupddiod(index){
           this.updstu=this.productlist[index];
-          console.log(this.updstu)
           this.upddiod=true;
         },
         //  关闭模态框
@@ -424,7 +426,6 @@
         //删除工序的方法
         delprolist() {
           var newoutapp = this.outapp.filter(item => item.checked == true)
-          console.log(newoutapp)
           if (newoutapp.length != 0) {
             this.outapp.forEach((item, index) => {
               if (item.checked) {
@@ -441,7 +442,6 @@
         },
         //计算方法
         aa(ids) {
-          console.log("blur")
           var row = this.outapp.find((item) => {
             return item.id == ids;
           });
@@ -464,25 +464,33 @@
         },
         //提交
         goinsprolist(){
-          console.log(this.updstu)
-          // this.prolist.forEach(item => {
-          //   item.updstu =this.updstu
-          // })
-          this.outapp[0].updstu=this.updstu
+          if (this.outapp.length>0){
+            var price =0;
+            this.outapp.forEach(item =>{
+              price+=item.subtotal;
+            })
 
-          console.log(this.prolist)
+            this.updstu.costPriceSum=price
+            this.outapp[0].updstu=this.updstu
 
-          this.$axios.post("gx/tjgx",JSON.stringify(this.outapp),{headers:{"Content-Type":"application/json"}}).then(response =>{
+            this.$axios.post("gx/tjgx",JSON.stringify(this.outapp),{headers:{"Content-Type":"application/json"}}).then(response =>{
+              this.$message({
+                message: '提交成功，请去审核',
+                type: 'success'
+              });
+              this.upddiod=false;
+              this.showdwon();
+              this.getdata()
+            }).catch(e =>{
+              this.$message.error('出现问题了，请联系开发人员！');
+            })
+          }else{
             this.$message({
-              message: '提交成功，请去审核',
-              type: 'success'
+              showClose: true,
+              message: '请至少添加一条工序！！',
+              type: 'warning'
             });
-            this.upddiod=false;
-            this.showdwon();
-            this.getdata()
-          }).catch(e =>{
-            this.$message.error('出现问题了，请联系开发人员！');
-          })
+          }
         },
         handleSizeChange(val) {  //页size变更
           this.pagesize = val;
@@ -520,9 +528,6 @@
             }
             return;
           })
-        },
-        bb(val){
-          console.log(val)
         }
       },
       created() {

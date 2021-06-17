@@ -97,7 +97,6 @@
   import Makeprocessdesignsheettoexamine from "./compontents/Productprocessdesign/Makeprocessdesignsheettoexamine";
   import Makeprocessdesignsheettoexaminequrey from "./compontents/Productprocessdesign/Makeprocessdesignsheettoexaminequrey";
   import Makeprocessdesignsheettoexaminechange from "./compontents/Productprocessdesign/Makeprocessdesignsheettoexaminechange";
-  import ApplyExamine from "./compontents/productionplan/ApplyExamine"
   import QueryApply from "./compontents/productionplan/QueryApply"
   import Shejidan from "./compontents/Chanpingsheji/Shejidan"
   import ModuleShenhe from "./compontents/Chanpingsheji/ModuleShenhe"
@@ -119,24 +118,23 @@
         name: '1',
         content: 'Welcome'
       }],
-      tabIndex: 1   // 设置到name属性的值
+      tabIndex: 1 ,  // 设置到name属性的值
       // isCollapse:true
-
+      loginName:'admin'
     }
   },
   methods:{
     getdata(){
       this.$axios.post("menu/query").then(response =>{
         this.menutable = response.data;
-        this.menutable.forEach((item,i) =>
-        {
-          console.log(item.childMenu.length)
-        })
+        // this.menutable.forEach((item,i) =>
+        // {
+        //   console.log(item.childMenu.length)
+        // })
       }).catch()
     },
     addTab(titlename,linkurl) {
 
-      console.log(titlename+""+linkurl)
 
       //判断当前页面是否存在
       var tempobj = this.editableTabs.find((item)=>{return item.title==titlename});
