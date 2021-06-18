@@ -4,7 +4,7 @@
       <el-table
         :data="dfiletable"
         style="width: 100%"
-        height="250">
+        height="400">
         <el-table-column prop="productId" label="产品编号" width="120"></el-table-column>
         <el-table-column prop="productName" label="产品名称" width="120"></el-table-column>
         <el-table-column prop="type" label="用途类型" width="120"></el-table-column>
@@ -121,7 +121,7 @@
           params.append("pageno", this.pageno);
           params.append("pagesize", this.pagesize);
 
-          this.$axios.get("dfile/fileShenhe.action", params).then((response) => {
+          this.$axios.post("dfile/fileShenhe.action", params).then((response) => {
             _this.dfiletable = response.data.records;
             _this.total = response.data.total;
           }).catch();
@@ -129,12 +129,11 @@
         handleSizeChange(val) {  //页size变更
           this.pagesize = val;
           this.pageno = 1;
-          this.getmenudata();
+          this.getdfiledata();
         },
         handleCurrentChange(val) {  //页码变更
-
           this.pageno = val;
-          this.getmenudata();
+          this.getdfiledata();
         },
         review(id){
           this.fuhe=true;
@@ -170,6 +169,7 @@
       },
       created(){
         this.getdfiledata();
+
       }
 
     }
