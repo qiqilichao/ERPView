@@ -38,7 +38,7 @@
 
          </div>
 
-                <el-table :data="applyData">
+          <el-table :data="applyData">
            <el-table-column label="点选" width="90">
              <template slot-scope="scope">
                <el-checkbox v-model="scope.row.checked"></el-checkbox>
@@ -232,7 +232,7 @@
        </div>
 
        <!-- 打开产品模态框-->
-     <!--  <el-dialog title="产品" :visible.sync="dialogTableVisible" width="1000px">
+    <!--   <el-dialog title="产品" :visible.sync="dialogTableVisible" width="1000px">
          <el-table :data="gridData">
            <el-table-column property="productId" label="产品编号" width="150"></el-table-column>
            <el-table-column property="productName" label="产品名称" width="200"></el-table-column>
@@ -248,7 +248,7 @@
              </template>
            </el-table-column>
          </el-table>
-         &lt;!&ndash; 分页&ndash;&gt;
+         &lt;!&ndash;&lt;!&ndash; 分页&ndash;&gt;&ndash;&gt;
          <el-pagination
            @size-change="handleSizeChange"
            @current-change="handleCurrentChange"
@@ -258,8 +258,8 @@
            layout="total, sizes, prev, pager, next, jumper"
            :total="total">
          </el-pagination>
-       </el-dialog>-->
-
+       </el-dialog>
+-->
      </div>
    </div>
 
