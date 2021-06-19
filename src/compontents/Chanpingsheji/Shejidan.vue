@@ -233,7 +233,7 @@
           params.append("pagesize", this.pagesize);
           params.append("firstKindName", this.firstKindName);
 
-          this.$axios.get("dfile/cpshenghetg.action", params).then((response) => {
+          this.$axios.post("dfile/cpshenghetg.action", params).then((response) => {
             _this.dfiletable = response.data.records;
             _this.total = response.data.total;
           }).catch();
@@ -338,7 +338,12 @@
       wuliaosave(){
           //添加按钮按下，保存到db
           var _this =this;
+          var hh=0;
      // this.wuliaodata[0].push({'productname':this.wuliaozuc.productName,'productId':this.wuliaozuc.productId,'designer':this.wuliaozuc.designer,'register':this.wuliaozuc.register,'moduleDescribe':this.wuliaozuc.moduleDescribe});
+        this.wuliaodata.forEach((item)=>{
+         hh=hh+ item.subtotal
+        })
+
     this.wuliaodata.forEach((item)=>{
           item["productname"]=this.wuliaozuc.productName;
           item["productid"]=this.wuliaozuc.productId;
@@ -346,6 +351,7 @@
           item["moduleDescribe"]=this.wuliaozuc.moduleDescribe;
           item["register"]=this.wuliaozuc.register;
           item["did"]= this.wuliaozuc.id;
+          item["hh"]=hh;
         })
 
         this.$axios.post("module/moduleadd.action",JSON.stringify(this.wuliaodata),{headers:{"Content-Type":"application/json"}}).then(response =>{

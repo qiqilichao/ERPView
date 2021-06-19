@@ -536,17 +536,17 @@
 
       },
       filters:{
-        jibie(val){
-          if (val=="D001-1"){
-            return "高档";
+          jibie(val){
+            if (val=="D001-1"){
+              return "高档";
+            }
+            if (val=="D001-2"){
+              return "中档";
+            }
+            if (val=="D001-2"){
+              return "低档";
+            }
           }
-          if (val=="D001-2"){
-            return "中档";
-          }
-          if (val=="D001-2"){
-            return "低档";
-          }
-        }
       }
     }
 </script>
