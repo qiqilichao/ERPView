@@ -102,7 +102,7 @@
   import Formulate  from "./compontents/Productionschedulingmanagement/Formulate"
   import Shejidan from "./compontents/Chanpingsheji/Shejidan"
   import ModuleShenhe from "./compontents/Chanpingsheji/ModuleShenhe"
-
+  import Productfilechange from "./compontents/Internalproduction/Productfilechange"
   import ApplyExamine from "./compontents/productionplan/ApplyExamine";
   import ProductFileRegistration from "./compontents/Internalproduction/ProductFileRegistration";
   import Reviewproductfileregistration from "./compontents/Internalproduction/Reviewproductfileregistration";
@@ -178,9 +178,8 @@
   components:{
     Welcome,ProductRegistration,ProductRegistrationreview,Productionquery,plan,Outboundappregistration,Outboundscheduling,
     Outboundappregistrationreview,Outboundappregistrationquery,Storagescheduling,Makeprocessdesignsheet,Makeprocessdesignsheettoexamine,
-    Makeprocessdesignsheettoexaminequrey,Makeprocessdesignsheettoexaminechange,ApplyExamine,QueryApply,Formulate
     Makeprocessdesignsheettoexaminequrey,Makeprocessdesignsheettoexaminechange,ApplyExamine,QueryApply,Shejidan,ModuleShenhe,
-    ProductFileRegistration,Reviewproductfileregistration,ProductFileEnquiry
+    ProductFileRegistration,Reviewproductfileregistration,ProductFileEnquiry,Productfilechange
 
   },
   created() {
