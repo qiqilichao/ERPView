@@ -110,6 +110,10 @@
   import Reviewproductfileregistration from "./compontents/Internalproduction/Reviewproductfileregistration";
   import ProductFileEnquiry from "./compontents/Internalproduction/ProductFileEnquiry";
 
+  import Processmaterialdesign from "./compontents/Processmaterial/Processmaterialdesign";
+  import Processmaterialtoexamine from "./compontents/Processmaterial/Processmaterialtoexamine";
+  import Processmaterialtoexaminechange from "./compontents/Processmaterial/Processmaterialtoexaminechange";
+  import Processmaterialtoexaminequery from "./compontents/Processmaterial/Processmaterialtoexaminequery";
 
   export default {
   name: 'app',
@@ -182,8 +186,8 @@
     Outboundappregistrationreview,Outboundappregistrationquery,Storagescheduling,Makeprocessdesignsheet,Makeprocessdesignsheettoexamine,
     Makeprocessdesignsheettoexaminequrey,Makeprocessdesignsheettoexaminechange,ApplyExamine,QueryApply,Formulate,
     Makeprocessdesignsheettoexaminequrey,Makeprocessdesignsheettoexaminechange,ApplyExamine,QueryApply,Shejidan,ModuleShenhe,
-    ProductFileRegistration,Reviewproductfileregistration,ProductFileEnquiry
-
+    ProductFileRegistration,Reviewproductfileregistration,ProductFileEnquiry,Processmaterialdesign,Processmaterialtoexaminequery,
+    Processmaterialtoexaminechange,Processmaterialtoexamine
   },
   created() {
     this.getdata();

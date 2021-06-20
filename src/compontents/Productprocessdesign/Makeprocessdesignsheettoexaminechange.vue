@@ -159,9 +159,6 @@
             prop="subtotal"
             label="工时成功小计（元）"
             width="190">
-            <!--          <template slot-scope="scope">-->
-            <!--            <span>{{scope.row.subtotal}}</span>-->
-            <!--          </template>-->
           </el-table-column>
         </el-table>
 
@@ -314,7 +311,19 @@
       methods:{
         //获取数据的方法
         getdata(){
-          this.$axios.post("gx/seloexmaldeprook").then(response =>{
+          var params = new URLSearchParams();
+          params.append("pageno",this.pageno);
+          params.append("pagesize",this.pagesize);
+
+          Object.keys(this.Search).forEach(item =>{
+            params.append(item,this.Search[item])
+          })
+          if(this.datelist!=''){
+            params.append("date1",this.datelist[0])
+            params.append("date2",this.datelist[1])
+          }
+
+          this.$axios.post("gx/seloexmaldeprook",params).then(response =>{
             this.productlist=response.data.records
             this.total=response.data.total
           }).catch(e => alert("出问题了"))
@@ -389,13 +398,15 @@
           this.$axios.post("gx/delprolist",params).then(response =>{
             if (response.data){
               this.$message({
+                showClose: true,
                 message: '删除成功',
                 type: 'success'
               });
             }else {
               this.$message({
-                message: '删除失败',
-                type: 'danger'
+                showClose: true,
+                message: '删除失败,改工序已设计！',
+                type: 'warning'
               });
             }
             this.outapp.splice(index,1);

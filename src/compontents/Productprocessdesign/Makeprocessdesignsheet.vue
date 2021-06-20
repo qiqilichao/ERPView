@@ -280,36 +280,35 @@
       <el-table-column
         label="档次级别"
         width="230">
-        <template slot-scope="scope" v-if="scope.supports">
-            {{scope.row.dfile.productClass | jibie}}
+        <template slot-scope="scope">
+            {{scope.row.productClass | jibie}}
         </template>
       </el-table-column>
       <el-table-column
         label="I级分类"
         width="170">
-        <template slot-scope="scope" v-if="scope.supports">
-          {{scope.row.dfile.firstKindName}}
+        <template slot-scope="scope">
+          {{scope.row.firstKindName}}
         </template>
       </el-table-column>
       <el-table-column
         label="II级分类"
         width="160">
-        <template slot-scope="scope" v-if="scope.supports">
-          {{scope.row.dfile.secondKindName}}
+        <template slot-scope="scope">
+          {{scope.row.secondKindName}}
         </template>
       </el-table-column>
       <el-table-column
         label="III级分类"
         width="160">
-        <template slot-scope="scope" v-if="scope.supports">
-          {{scope.row.dfile.thirdKindName}}
+        <template slot-scope="scope" >
+          {{scope.row.thirdKindName}}
         </template>
       </el-table-column>
       <el-table-column
-        label="产品经理"
-        width="163">
-        <template slot-scope="scope" v-if="scope.supports">
-          {{scope.row.dfile.responsiblePerson}}
+        label="产品经理">
+        <template slot-scope="scope">
+          {{scope.row.responsiblePerson}}
         </template>
       </el-table-column>
       <el-table-column label="指定设计单">
@@ -378,7 +377,7 @@
           }
 
           this.$axios.post("gx/selDesignsheet",param).then(response =>{
-            this.productlist=response.data.list;
+            this.productlist=response.data.records;
             this.total=response.data.total;
           }).catch()
         },
@@ -536,17 +535,17 @@
 
       },
       filters:{
-          jibie(val){
-            if (val=="D001-1"){
-              return "高档";
-            }
-            if (val=="D001-2"){
-              return "中档";
-            }
-            if (val=="D001-2"){
-              return "低档";
-            }
+        jibie(val){
+          if (val=="D001-1"){
+            return "高档";
           }
+          if (val=="D001-2"){
+            return "中档";
+          }
+          if (val=="D001-3"){
+            return "低档";
+          }
+        }
       }
     }
 </script>
