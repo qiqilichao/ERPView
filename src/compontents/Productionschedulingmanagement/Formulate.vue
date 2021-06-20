@@ -236,7 +236,7 @@
           <el-table-column
             label="查看物料">
             <template slot-scope="scope">
-                 <el-button @click="showmaterial(scope.row.id)">查看物料</el-button>
+                 <el-button @click="showmaterial(scope.row)">查看物料</el-button>
             </template>
 
           </el-table-column>
@@ -279,12 +279,12 @@
       <el-form :inline="true" :model="formulate" class="demo-form-inline">
 
         <el-form-item >
-          <el-input placeholder="请输入内容"  style="width: 450px"  >
+          <el-input placeholder="请输入内容"  style="width: 450px" :value="designsheet" >
             <template slot="prepend">设计单编号</template>
           </el-input>
         </el-form-item>
         <el-form-item >
-          <el-input  style="width: 450px" >
+          <el-input  style="width: 450px"  :value="workingprocedurename">
             <template slot="prepend">工序名称编号</template>
           </el-input>
         </el-form-item>
@@ -296,29 +296,29 @@
             label="序号">
           </el-table-column>
           <el-table-column
-            prop="procedureName"
+            prop="productName"
             label="物料名称">
           </el-table-column>
           <el-table-column
-            prop="procedureId"
+            prop="productId"
             label="物料编号">
           </el-table-column>
 
           <el-table-column
-            prop="procedureDescribe"
+            prop="productDescribe"
             label="描述">
           </el-table-column>
           <el-table-column
-            prop="labourHourAmount"
+            prop="amount"
             label="本工序数">
           </el-table-column>
           <el-table-column
-            prop="costPrice"
+            prop="amountUnit"
             label="单位">
           </el-table-column>
 
           <el-table-column
-            prop="subtotal"
+            prop="costPrice"
             label="单价">
           </el-table-column>
 
@@ -349,6 +349,11 @@
             workorder:"",
             register:"",
             currentdatetiem:"",
+            //设计单编号
+            designsheet:"",
+           //工序名
+            workingprocedurename:"",
+            //物料详情
             materialData:[],
             formulateArr:[],
             manufactureData:[],
@@ -356,6 +361,10 @@
 
             },
             num:0,
+            //工时
+            gongshi:0,
+            //物料
+            wuliao:0,
             formInline:{
               productId:"",
               productName:"",
@@ -449,6 +458,9 @@
              params.append("productId",this.formulate.productId)
              this.$axios.post("dpd/queryBypid",params).then((response)=>{
                    this.manufactureData=response.data;
+                   this.manufactureData.forEach((item)=>{
+                   this.gongshi+=item.labourHourAmount;
+                 })
              }).catch()
          },
 
@@ -485,7 +497,6 @@
            params.append("registerTime",this.currentdatetiem);
            params.append("designer",this.workorder);
            params.append("applyIdGroup",applyIdGroup);
-
             // params.append("designProcedureDetailsList",JSON.stringify(this.manufactureData));
            //console.log(applyIdGroup)
            this.$axios.post("manufacture/savemanufacture",params).then((response)=>{
@@ -495,13 +506,15 @@
          },
 
          //物料详情
-         showmaterial(id){
+         showmaterial(obj){
+              this.material=true;
+              this.workingprocedurename=obj.procedureName;
+              this.designsheet=obj.designId;
               var params=new URLSearchParams();
-                  params.append("id",id);
-              this.$axios.post("",params).then((response)=>{
-
+                  params.append("id",obj.id);
+              this.$axios.post("dpm/queryByidList",params).then((response)=>{
+               this.materialData=response.data;
               }).catch()
-
          }
 
        },

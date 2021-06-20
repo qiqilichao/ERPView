@@ -64,8 +64,8 @@
             <el-col :span="14" :offset="10">
               <div>
                 <template>
-                  <el-radio v-model="radio" label="S001-1">未通过</el-radio>
-                  <el-radio v-model="radio" label="S001-2">通过</el-radio>
+                  <el-radio v-model="radio" label="S001-2">未通过</el-radio>
+                  <el-radio v-model="radio" label="S001-1">通过</el-radio>
                 </template>
                 <el-button @click="saveExamine">确定</el-button>
                 <el-button >取消</el-button>
@@ -137,7 +137,7 @@
               aid:"",
               pagesize:8,
               pageno:1,
-              radio:"S001-1",
+              radio:"S001-2",
               applyid:0,
               user:"yy",
               dialogTableVisible:false,

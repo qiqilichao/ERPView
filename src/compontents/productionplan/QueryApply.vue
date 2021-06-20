@@ -185,10 +185,10 @@
            if("S001-0"==val){
               return "待审核"
            }
-          if("s001-1"==val){
+          if("S001-1"==val){
             return "审核通过"
           }
-          if("s001-2"==val){
+          if("S001-2"==val){
             return "审核不通"
           }
         }
