@@ -109,6 +109,9 @@
   import ProductFileRegistration from "./compontents/Internalproduction/ProductFileRegistration";
   import Reviewproductfileregistration from "./compontents/Internalproduction/Reviewproductfileregistration";
   import ProductFileEnquiry from "./compontents/Internalproduction/ProductFileEnquiry";
+  import Deleteproductfile from "./compontents/Internalproduction/Deleteproductfile"
+  import Productfilerecovery from "./compontents/Internalproduction/Productfilerecovery"
+  import Productfilesarepermanentlydeleted from "./compontents/Internalproduction/Productfilesarepermanentlydeleted"
 
   import Processmaterialdesign from "./compontents/Processmaterial/Processmaterialdesign";
   import Processmaterialtoexamine from "./compontents/Processmaterial/Processmaterialtoexamine";
@@ -188,6 +191,9 @@
     Makeprocessdesignsheettoexaminequrey,Makeprocessdesignsheettoexaminechange,ApplyExamine,QueryApply,Shejidan,ModuleShenhe,
     ProductFileRegistration,Reviewproductfileregistration,ProductFileEnquiry,Processmaterialdesign,Processmaterialtoexaminequery,
     Processmaterialtoexaminechange,Processmaterialtoexamine
+    ProductFileRegistration,Reviewproductfileregistration,ProductFileEnquiry,Productfilechange,Formulate,Deleteproductfile,
+    Productfilerecovery,Productfilesarepermanentlydeleted
+
   },
   created() {
     this.getdata();
