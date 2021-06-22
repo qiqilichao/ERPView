@@ -500,7 +500,11 @@
             // params.append("designProcedureDetailsList",JSON.stringify(this.manufactureData));
            //console.log(applyIdGroup)
            this.$axios.post("manufacture/savemanufacture",params).then((response)=>{
-                 console.log(response.data);
+                if(response.data){
+                  this.dialogTableVisible=false;
+                  this.dVisible=false;
+                  this.getformulateData();
+                }
            }).catch()
 
          },

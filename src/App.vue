@@ -103,12 +103,18 @@
   import ApplyExamine from "./compontents/productionplan/ApplyExamine";
 */
   import QueryApply from "./compontents/productionplan/QueryApply"
+  import Formulate  from "./compontents/Productionschedulingmanagement/Formulate"
   import Shejidan from "./compontents/Chanpingsheji/Shejidan"
   import ModuleShenhe from "./compontents/Chanpingsheji/ModuleShenhe"
+
+  import Productfilechange from "./compontents/Internalproduction/Productfilechange"
   import ApplyExamine from "./compontents/productionplan/ApplyExamine";
   import ProductFileRegistration from "./compontents/Internalproduction/ProductFileRegistration";
   import Reviewproductfileregistration from "./compontents/Internalproduction/Reviewproductfileregistration";
   import ProductFileEnquiry from "./compontents/Internalproduction/ProductFileEnquiry";
+  import Deleteproductfile from "./compontents/Internalproduction/Deleteproductfile"
+  import Productfilerecovery from "./compontents/Internalproduction/Productfilerecovery"
+  import Productfilesarepermanentlydeleted from "./compontents/Internalproduction/Productfilesarepermanentlydeleted"
 
 
   export default {
@@ -181,7 +187,7 @@
     Welcome,ProductRegistration,ProductRegistrationreview,Productionquery,plan,Outboundappregistration,Outboundscheduling,
     Outboundappregistrationreview,Outboundappregistrationquery,Storagescheduling,Makeprocessdesignsheet,Makeprocessdesignsheettoexamine,
     Makeprocessdesignsheettoexaminequrey,Makeprocessdesignsheettoexaminechange,ApplyExamine,QueryApply,Shejidan,ModuleShenhe,
-    ProductFileRegistration,Reviewproductfileregistration,ProductFileEnquiry,Moduleselect,Moduleupdate,ModuleShenhe
+    ProductFileRegistration,Reviewproductfileregistration,ProductFileEnquiry
 
   },
   created() {
