@@ -234,15 +234,15 @@
           var params = new URLSearchParams();
           params.append("id", id);
 
+            /*alert(this.subtotal)
+            hh = hh + this.wuliaodata.subtotal;
 
-            hh = hh + wuliaodata.subtotal;
-
-            aleret(hh)
+            alert(hh)
 
           this.moduleUpdateeshow.costPriceSum = this.moduleUpdateeshow.costPriceSum - hh;
+*/
 
-
-         /* Object.keys(this.moduleUpdateeshow).forEach(function (item) {
+         Object.keys(this.moduleUpdateeshow).forEach(function (item) {
             if(_this.moduleUpdateeshow[item]!=null){
               params.append(item,_this.moduleUpdateeshow[item]);
             }
@@ -267,9 +267,9 @@
             }
             //刷新表格数据
 
-            _this.modulewuliaoSelect(this.id);
+            _this.modulewuliaoSelect();
           }).catch();
-          */
+
         },
         //打开添加物料模态框
         wuliaobtnsave(){
@@ -355,9 +355,10 @@
                   message: response.data?'修改成功，请去审核':"修改失败",
                   type: 'success'
 
-                }).catch();
-                _this.modulewuliaoSelectshow=false;
-                _this.getmenudata();
+                })
+                this.modulewuliaoSelectshow=false;
+                this.pageno = 1
+                this.getmenudata();
 
             });
 

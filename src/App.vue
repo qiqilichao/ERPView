@@ -187,7 +187,7 @@
     Welcome,ProductRegistration,ProductRegistrationreview,Productionquery,plan,Outboundappregistration,Outboundscheduling,
     Outboundappregistrationreview,Outboundappregistrationquery,Storagescheduling,Makeprocessdesignsheet,Makeprocessdesignsheettoexamine,
     Makeprocessdesignsheettoexaminequrey,Makeprocessdesignsheettoexaminechange,ApplyExamine,QueryApply,Shejidan,ModuleShenhe,
-    ProductFileRegistration,Reviewproductfileregistration,ProductFileEnquiry
+    ProductFileRegistration,Reviewproductfileregistration,ProductFileEnquiry,Moduleselect,Moduleupdate
 
   },
   created() {
