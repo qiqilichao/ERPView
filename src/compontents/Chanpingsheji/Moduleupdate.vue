@@ -234,15 +234,15 @@
           var params = new URLSearchParams();
           params.append("id", id);
 
-          this.xinwuliaodata.forEach((item) => {
-            hh = hh + item.subtotal
-          })
+
+            hh = hh + wuliaodata.subtotal;
+
+            aleret(hh)
+
+          this.moduleUpdateeshow.costPriceSum = this.moduleUpdateeshow.costPriceSum - hh;
 
 
-          this.moduleUpdateeshow.costPriceSum = this.moduleUpdateeshow.costPriceSum + hh;
-
-
-          Object.keys(this.moduleUpdateeshow).forEach(function (item) {
+         /* Object.keys(this.moduleUpdateeshow).forEach(function (item) {
             if(_this.moduleUpdateeshow[item]!=null){
               params.append(item,_this.moduleUpdateeshow[item]);
             }
@@ -267,8 +267,9 @@
             }
             //刷新表格数据
 
-            _this.modulewuliaoSelect();
+            _this.modulewuliaoSelect(this.id);
           }).catch();
+          */
         },
         //打开添加物料模态框
         wuliaobtnsave(){
