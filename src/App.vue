@@ -114,6 +114,8 @@
   import Productfilerecovery from "./compontents/Internalproduction/Productfilerecovery"
   import Productfilesarepermanentlydeleted from "./compontents/Internalproduction/Productfilesarepermanentlydeleted"
 
+  import Dispatchaudit from "./compontents/productionplan/Dispatchaudit"
+
 
   export default {
   name: 'app',
@@ -185,7 +187,7 @@
     Welcome,ProductRegistration,ProductRegistrationreview,Productionquery,plan,Outboundappregistration,Outboundscheduling,
     Outboundappregistrationreview,Outboundappregistrationquery,Storagescheduling,Makeprocessdesignsheet,Makeprocessdesignsheettoexamine,
     Makeprocessdesignsheettoexaminequrey,Makeprocessdesignsheettoexaminechange,ApplyExamine,QueryApply,Shejidan,ModuleShenhe,
-    ProductFileRegistration,Reviewproductfileregistration,ProductFileEnquiry
+    ProductFileRegistration,Reviewproductfileregistration,ProductFileEnquiry,Dispatchaudit
 
   },
   created() {
