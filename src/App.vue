@@ -105,6 +105,7 @@
   import Shejidan from "./compontents/Chanpingsheji/Shejidan"
   import ModuleShenhe from "./compontents/Chanpingsheji/ModuleShenhe"
 
+  import Productfilechange from "./compontents/Internalproduction/Productfilechange"
   import ApplyExamine from "./compontents/productionplan/ApplyExamine";
   import ProductFileRegistration from "./compontents/Internalproduction/ProductFileRegistration";
   import Reviewproductfileregistration from "./compontents/Internalproduction/Reviewproductfileregistration";
@@ -113,10 +114,6 @@
   import Productfilerecovery from "./compontents/Internalproduction/Productfilerecovery"
   import Productfilesarepermanentlydeleted from "./compontents/Internalproduction/Productfilesarepermanentlydeleted"
 
-  import Processmaterialdesign from "./compontents/Processmaterial/Processmaterialdesign";
-  import Processmaterialtoexamine from "./compontents/Processmaterial/Processmaterialtoexamine";
-  import Processmaterialtoexaminechange from "./compontents/Processmaterial/Processmaterialtoexaminechange";
-  import Processmaterialtoexaminequery from "./compontents/Processmaterial/Processmaterialtoexaminequery";
 
   export default {
   name: 'app',
@@ -187,12 +184,8 @@
   components:{
     Welcome,ProductRegistration,ProductRegistrationreview,Productionquery,plan,Outboundappregistration,Outboundscheduling,
     Outboundappregistrationreview,Outboundappregistrationquery,Storagescheduling,Makeprocessdesignsheet,Makeprocessdesignsheettoexamine,
-    Makeprocessdesignsheettoexaminequrey,Makeprocessdesignsheettoexaminechange,ApplyExamine,QueryApply,Formulate,
     Makeprocessdesignsheettoexaminequrey,Makeprocessdesignsheettoexaminechange,ApplyExamine,QueryApply,Shejidan,ModuleShenhe,
-    ProductFileRegistration,Reviewproductfileregistration,ProductFileEnquiry,Processmaterialdesign,Processmaterialtoexaminequery,
-    Processmaterialtoexaminechange,Processmaterialtoexamine
-    ProductFileRegistration,Reviewproductfileregistration,ProductFileEnquiry,Productfilechange,Formulate,Deleteproductfile,
-    Productfilerecovery,Productfilesarepermanentlydeleted
+    ProductFileRegistration,Reviewproductfileregistration,ProductFileEnquiry
 
   },
   created() {

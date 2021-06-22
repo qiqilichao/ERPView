@@ -10,12 +10,12 @@
         <el-table-column prop="productId" label="产品编号" width="120"></el-table-column>
         <el-table-column prop="productname" label="产品名称" width="120"></el-table-column>
         <!--<el-table-column prop="register" label="设计单状态" width="120"></el-table-column>-->
-        <el-table-column prop="checktag " label="审核状态" width="120"></el-table-column>
-     <!--  <el-table-column
+        <el-table-column prop="checkTag" label="审核状态" width="120"></el-table-column>
+   <!--  <el-table-column
           label="审核状态"
           width="230">
-          <template slot-scope="scope" v-if="scope.supports">
-            {{scope.row.moduletable.checktag | jibie}}
+          <template slot-scope="scope">
+            {{scope.row.moduletable.checkTag | jibie}}
           </template>
         </el-table-column>-->
       <el-table-column
@@ -116,7 +116,7 @@
       created(){
         this.getmenudata();
       },
-    /*  filters:{
+      filters:{
         jibie(val){
           if (val=="S001-0"){
             return "等待";
@@ -128,7 +128,7 @@
             return "不通过";
           }
         }
-      }*/
+      }
     }
 </script>
 
