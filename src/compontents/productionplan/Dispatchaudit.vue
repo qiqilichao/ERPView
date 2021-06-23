@@ -326,7 +326,7 @@
            var params = new URLSearchParams();
            params.append("id",obj.id);
            params.append("procedureName",obj.procedureName)
-           console.log(obj.id)
+
            this.$axios.post("dpm/queryByidandname",params).then((response) => {
              this.materialData = response.data;
            }).catch()

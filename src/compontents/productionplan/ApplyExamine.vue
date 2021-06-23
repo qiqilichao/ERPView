@@ -61,14 +61,14 @@
             </el-form-item>
           </el-form>
           <el-row :gutter="24">
-            <el-col :span="14" :offset="10">
+            <el-col :span="10" :offset="14">
               <div>
                 <template>
                   <el-radio v-model="radio" label="S001-2">未通过</el-radio>
                   <el-radio v-model="radio" label="S001-1">通过</el-radio>
                 </template>
                 <el-button @click="saveExamine">确定</el-button>
-                <el-button >取消</el-button>
+                <el-button @click="outdialogTableVisible">取消</el-button>
               </div>
             </el-col>
           </el-row>
@@ -227,7 +227,11 @@
                            });
                          }
                   }).catch();
-            }
+            },
+        //推出审核
+        outdialogTableVisible(){
+          this.dialogTableVisible=false;
+        }
         },
       created() {
                this.getApplyData()
