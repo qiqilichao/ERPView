@@ -1,5 +1,7 @@
 <template>
   <div id="Processmaterialdesign">
+
+
     <el-table :data="processlist" border style="width: 100%">
         <el-table-column
           prop="designId"
@@ -53,8 +55,11 @@
       :visible.sync="formulate"
       width="80%"
       :before-close="handleClose">
+      <div style="padding-left: 1000px">
+        <el-button type="success" @click="processSubmit">提交</el-button>
+        <el-button type="info" @click="formulate=false">返回</el-button>
+      </div>
       <h1>工序物料设计单</h1>
-
       <el-form :inline="true" :model="process" class="demo-form-inline">
         <el-form-item label="工序单编号：">
           <span>{{process.designId}}</span>
@@ -120,7 +125,7 @@
         <el-form-item label="工时总成本：">
           <span>{{process.costPriceSum}}</span>
         </el-form-item>
-        <el-form-item label="工时总成本：" style="padding-left: 590px">
+        <el-form-item label="物料总成本：" style="padding-left: 590px">
           <span>{{process.moduleCostPriceSum}}</span>
         </el-form-item>
         <br>
@@ -260,105 +265,6 @@
         </el-table>
       </div>
     </el-dialog>
-
-<!--    <el-dialog-->
-<!--      title="工序物料设计单"-->
-<!--      :visible.sync="newformulate"-->
-<!--      width="80%"-->
-<!--      :before-close="handleClose">-->
-<!--      <h1>工序物料设计单</h1>-->
-
-<!--      <el-form :inline="true" :model="process" class="demo-form-inline">-->
-<!--        <el-form-item label="工序单编号：">-->
-<!--          <span>{{process.designId}}</span>-->
-<!--        </el-form-item>-->
-<!--        <el-form-item style="padding-left: 500px" label="设计人：">-->
-<!--          <el-input style="width: 300px" clearable v-model="process.designer1"></el-input>-->
-<!--        </el-form-item><br>-->
-<!--        <el-form-item style="padding-left: 10px" label="产品名称：">-->
-<!--          <span>{{process.productName}}</span>-->
-<!--        </el-form-item>-->
-<!--        <el-form-item style="padding-left: 550px" label="产品编号：">-->
-<!--          <span>{{process.productId}}</span>-->
-<!--        </el-form-item>-->
-<!--      </el-form>-->
-
-<!--      <el-table :data="newprolist" border style="width: 100%">-->
-<!--        <el-table-column-->
-<!--          prop="detailsNumber"-->
-<!--          label="序号"-->
-<!--          width="70px">-->
-<!--        </el-table-column>-->
-<!--        <el-table-column-->
-<!--          prop="procedureName"-->
-<!--          label="工序名称"-->
-<!--          width="185">-->
-<!--        </el-table-column>-->
-<!--        <el-table-column-->
-<!--          prop="procedureId"-->
-<!--          label="工序编号"-->
-<!--          width="185">-->
-<!--        </el-table-column>-->
-<!--        <el-table-column-->
-<!--          prop="procedureDescribe"-->
-<!--          label="描述"-->
-<!--          width="185">-->
-<!--        </el-table-column>-->
-<!--        <el-table-column-->
-<!--          prop="labourHourAmount"-->
-<!--          label="工时数（小时）"-->
-<!--          width="185">-->
-<!--        </el-table-column>-->
-<!--        <el-table-column-->
-<!--          prop="costPrice"-->
-<!--          label="工时成本小计（元）"-->
-<!--          width="190">-->
-<!--        </el-table-column>-->
-<!--        <el-table-column-->
-<!--          prop="costPrice"-->
-<!--          label="物料工时小计"-->
-<!--          width="190">-->
-<!--        </el-table-column>-->
-<!--        <el-table-column label="设计">-->
-<!--          <template slot-scope="scope">-->
-<!--            <el-button v-if="scope.row.designModuleTag=='D002-0'" type="danger" size="mini"-->
-<!--                       @click="getprocesslist(scope.row.id)">设计</el-button>-->
-<!--            <el-button v-if="scope.row.designModuleTag=='D002-1'" type="danger" size="mini"-->
-<!--                       @click="newgetnewprocesslist(scope.row.id)">重新设计</el-button>-->
-<!--          </template>-->
-<!--        </el-table-column>-->
-<!--      </el-table>-->
-
-<!--      <el-form :inline="true" :model="process" class="demo-form-inline">-->
-<!--        <el-form-item label="工时总成本：">-->
-<!--          <span>{{process.costPriceSum}}</span>-->
-<!--        </el-form-item>-->
-<!--        <el-form-item label="工时总成本：" style="padding-left: 590px">-->
-<!--          <span>{{process.moduleCostPriceSum}}</span>-->
-<!--        </el-form-item>-->
-<!--        <br>-->
-<!--        <el-form-item label="设计要求：">-->
-<!--          <el-input   v-model="process.procedureDescribe" style="width: 1000px" type="textarea"></el-input>-->
-<!--        </el-form-item><br>-->
-<!--        <el-form-item label="审核人：">-->
-<!--          &lt;!&ndash;          <el-input clearable v-model="process.changer"></el-input>&ndash;&gt;-->
-<!--          <span>{{process.changer}}</span>-->
-<!--        </el-form-item>-->
-<!--        <el-form-item style="padding-left: 600px" label="审核时间：">-->
-<!--          <div class="block" >-->
-<!--            <el-date-picker style="width: 400px"-->
-<!--                            v-model="process.changeTime"-->
-<!--                            type="datetime"-->
-<!--                            placeholder="选择日期时间"-->
-<!--                            value-format="yyyy-MM-dd HH:mm:ss"-->
-<!--                            default-time="12:00:00"-->
-<!--                            :disabled="true">-->
-<!--            </el-date-picker>-->
-<!--          </div>-->
-<!--        </el-form-item>-->
-
-<!--      </el-form>-->
-<!--    </el-dialog>-->
 
     <el-dialog
       title="工序物料设计单"
@@ -558,7 +464,6 @@
         },
         //重新设计
         newgetprocesslist(ids){
-          console.log(ids)
           var params = new URLSearchParams();
           params.append("proid",ids);
           this.$axios.post("gx/selnewprocessById",params).then(response =>{
@@ -566,7 +471,6 @@
             if (this.newdisgprocess.length!=0){
               this.newdisgprocess.forEach(item =>{
                 item.parintid=ids;
-                // item.amount1=Number(item.amount)-Number(item.residualAmount);
               })
               this.newformulateprocess=true
             }else{
@@ -635,7 +539,28 @@
             this.prolist= response.data;
           }).catch(e => this.$message.error('出现问题了，请联系开发人员！'))
         },
+        //提交
+        processSubmit(){
+          var params = new URLSearchParams();
+          // Object.keys(this.process).forEach(item =>{
+          //   params.append(item,this.process[item])
+          // })
+          params.append("id",this.process.id)
+          this.$axios.post("gx/processSubmit",params).then(response =>{
+            if (response.data) {
+              this.$message({
+                showClose: true,
+                message: '设计成功，请去审核',
+                type: 'success'
+              });
+              this.formulate=false;
+              this.getdata()
+            }else {
+              this.$message.error('提交失败')
+            }
+          }).catch(e => this.$message.error('出现问题了，请联系开发人员！'))
 
+        },
         handleSizeChange(val) {  //页size变更
           this.pagesize = val;
           this.pageno = 1;
