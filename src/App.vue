@@ -97,9 +97,9 @@
   import Makeprocessdesignsheettoexamine from "./compontents/Productprocessdesign/Makeprocessdesignsheettoexamine";
   import Makeprocessdesignsheettoexaminequrey from "./compontents/Productprocessdesign/Makeprocessdesignsheettoexaminequrey";
   import Makeprocessdesignsheettoexaminechange from "./compontents/Productprocessdesign/Makeprocessdesignsheettoexaminechange";
-/*
-  import ApplyExamine from "./compontents/productionplan/ApplyExamine";
-*/
+  import Warehousingapplication from "./compontents/Inandoutscheduling/Warehousingapplication"
+  import Warehouseapplicationreview from "./compontents/Inandoutscheduling/Warehouseapplicationreview"
+  import Warehouseapplicationinquiry from "./compontents/Inandoutscheduling/Warehouseapplicationinquiry"
   import QueryApply from "./compontents/productionplan/QueryApply"
   import Formulate  from "./compontents/Productionschedulingmanagement/Formulate"
   import Shejidan from "./compontents/Chanpingsheji/Shejidan"
@@ -115,6 +115,10 @@
   import Productfilesarepermanentlydeleted from "./compontents/Internalproduction/Productfilesarepermanentlydeleted"
 
   import Dispatchaudit from "./compontents/productionplan/Dispatchaudit"
+  import Processmaterialdesign from "./compontents/Processmaterial/Processmaterialdesign";
+  import Processmaterialtoexamine from "./compontents/Processmaterial/Processmaterialtoexamine";
+  import Processmaterialtoexaminechange from "./compontents/Processmaterial/Processmaterialtoexaminechange";
+  import Processmaterialtoexaminequery from "./compontents/Processmaterial/Processmaterialtoexaminequery";
 
   import Dispatchinquiry from "./compontents/productionplan/Dispatchinquiry"
 
@@ -187,7 +191,11 @@
   components:{
     Welcome,ProductRegistration,ProductRegistrationreview,Productionquery,plan,Outboundappregistration,Outboundscheduling,
     Outboundappregistrationreview,Outboundappregistrationquery,Storagescheduling,Makeprocessdesignsheet,Makeprocessdesignsheettoexamine,
-    Makeprocessdesignsheettoexaminequrey,Makeprocessdesignsheettoexaminechange,ApplyExamine,QueryApply,Shejidan,ModuleShenhe,
+     Makeprocessdesignsheettoexaminequrey,Makeprocessdesignsheettoexaminechange,ApplyExamine,QueryApply,Shejidan,ModuleShenhe,
+    Processmaterialtoexaminechange,Processmaterialtoexamine, ProductFileRegistration,Reviewproductfileregistration,ProductFileEnquiry,
+    Productfilechange,Formulate,Deleteproductfile, Productfilerecovery,Productfilesarepermanentlydeleted,Processmaterialdesign,
+    Processmaterialtoexaminequery,Warehousingapplication,Warehouseapplicationreview,Warehouseapplicationinquiry,
+    Makeprocessdesignsheettoexaminechange,ApplyExamine,QueryApply,Shejidan,ModuleShenhe,
     ProductFileRegistration,Reviewproductfileregistration,ProductFileEnquiry,Dispatchaudit,Dispatchinquiry,Formulate
 
   },
