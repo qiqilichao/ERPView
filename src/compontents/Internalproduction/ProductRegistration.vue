@@ -116,7 +116,7 @@
             <template slot-scope="scope">
               <el-button v-if="scope.row.procedureFinishTag=='G004-0'" type="danger" size="mini"
                          @click="deji(scope.$index,scope.row.id)">登记</el-button>
-              <span style="color: orange"  v-else-if="scope.row.procedureFinishTag=='G004-1'">等待审核</span>
+              <span style="color: orange"  v-else-if="scope.row.procedureFinishTag=='G004-1' || scope.row.procedureFinishTag=='G004-2'">等待审核</span>
               <span v-else-if="scope.row.procedureFinishTag=='G004-3'">完成</span>
             </template>
           </el-table-column>
@@ -151,7 +151,7 @@
             <!--          <el-input clearable v-model="process.changer"></el-input>-->
             <span>{{product.register}}</span>
           </el-form-item>
-          <el-form-item style="padding-left: 800px" label="登记时间：">
+          <el-form-item style="padding-left: 700px" label="登记时间：">
             <div class="block" >
               <el-date-picker style="width: 400px"
                               v-model="product.registerTime"
@@ -175,7 +175,7 @@
                               placeholder="选择日期时间"
                               value-format="yyyy-MM-dd HH:mm:ss"
                               default-time="12:00:00"
-                              :disabled="true">
+                              >
               </el-date-picker>
             </div>
           </el-form-item><br>
@@ -188,7 +188,7 @@
 
       <el-dialog title="生产登记单" :visible.sync="resdia" width="70%" :before-close="handleClose">
         <div style="padding-left: 850px">
-          <el-button type="success" @click="resdia=false">提交</el-button>
+          <el-button type="success" @click="tijiao">提交</el-button>
           <el-button type="info" @click="resdia=false">返回</el-button>
         </div>
         <h1>生产登记单</h1>
@@ -201,7 +201,7 @@
             <span>{{desmodule.procedureName}}</span>
           </el-form-item><br>
           <el-form-item style="padding-left: 10px" label="负责人：">
-            <el-input style="width: 300px" clearable v-model="desmodule.designer1"></el-input>
+            <el-input style="width: 300px" clearable v-model="desmodule.procedureResponsiblePerson"></el-input>
           </el-form-item>
           <el-form-item style="padding-left: 220px" label="设计工时数：">
             <span>{{desmodule.labourHourAmount}}</span>
@@ -210,7 +210,7 @@
             <span>{{desmodule.realLabourHourAmount}}</span>
           </el-form-item>
           <el-form-item style="padding-left: 490px" label="本次工时数：">
-            <el-input style="width: 300px" clearable v-model="desmodule.designer1"></el-input>
+            <el-input style="width: 300px" clearable v-model="desmodule.labourHourAmount1"></el-input>
           </el-form-item>
         </el-form>
 
@@ -248,24 +248,23 @@
           <el-table-column
             label="本次数量">
             <template slot-scope="scope">
-              <el-input v-model="shulian" ></el-input>
+              <el-input v-model="scope.row.shuliang" ></el-input>
             </template>
           </el-table-column>
         </el-table>
 
         <el-form :inline="true" :model="desmodule" class="demo-form-inline">
           <el-form-item label="登记人：">
-            <el-input style="width: 300px" clearable v-model="desmodule.designer1"></el-input>
+            <el-input style="width: 300px" clearable v-model="desmodule.register"></el-input>
           </el-form-item>
           <el-form-item style="padding-left:200px" label="登记时间：">
             <div class="block" >
               <el-date-picker style="width: 400px"
-                              v-model="desmodule.changeTime"
+                              v-model="desmodule.registerTime"
                               type="datetime"
                               placeholder="选择日期时间"
                               value-format="yyyy-MM-dd HH:mm:ss"
-                              default-time="12:00:00"
-                              :disabled="true">
+                              default-time="12:00:00">
               </el-date-picker>
             </div>
           </el-form-item>
@@ -299,6 +298,7 @@
             this.total=response.data.total
           }).catch(e => this.$message.error('出现问题了，请联系开发人员！'))
         },
+
         register(index,id){
           var params = new URLSearchParams();
           params.append("id",id);
@@ -309,13 +309,44 @@
           }).catch(e => this.$message.error('出现问题了，请联系开发人员！'))
         },
         deji(index,id){
-          var params = new URLSearchParams();
-          params.append("id",id);
-          this.$axios.post("manufacture/querypromoduleById",params).then(response =>{
-            this.desmodulelist=response.data
-            this.desmodule=this.productlist[index];
-            this.resdia=true;
-          }).catch(e => this.$message.error('出现问题了，请联系开发人员！'))
+          var bool= true;
+          if (index==0){
+            var params = new URLSearchParams();
+            params.append("id",id);
+            this.$axios.post("manufacture/querypromoduleById",params).then(response =>{
+              this.desmodulelist=response.data
+              this.desmodule=this.productlist[index];
+              this.resdia=true;
+            }).catch(e => this.$message.error('出现问题了，请联系开发人员！'))
+          }else if (this.productlist[index-1].procedureTransferTag!='G005-2'){
+            this.$message.error("上一道工序未交接完成，请先交接工序！！")
+            bool=false;
+          }
+          if (bool){
+            var params = new URLSearchParams();
+            params.append("id",id);
+            this.$axios.post("manufacture/querypromoduleById",params).then(response =>{
+              this.desmodulelist=response.data
+              this.desmodule=this.productlist[index];
+              this.resdia=true;
+            }).catch(e => this.$message.error('出现问题了，请联系开发人员！'))
+          }
+        },
+        tijiao(){
+          this.desmodulelist[0].proceduring=(this.desmodule);
+          this.$axios.post("manufacture/dengji",JSON.stringify(this.desmodulelist),{headers:{"Content-Type":"application/json"}}).then(response =>{
+            if (response.data){
+              this.$message({
+                message: '提交成功，请去审核',
+                type: 'success'
+              });
+              this.getdata();
+              this.resdia=false;
+              this.productdia=false
+            }
+          }).catch(e =>{
+            this.$message.error('出现问题了，请联系开发人员！');
+          })
         },
         handleSizeChange(val) {  //页size变更
           this.pagesize = val;
@@ -334,7 +365,22 @@
             })
             .catch(_ => {
             });
-        }
+        },
+        //获取当前时间
+        getdate(){
+          let date = new Date();
+          let Y = date.getFullYear();
+          let M = this.getStr(date.getMonth() + 1);
+          let D = this.getStr(date.getDate());
+          let hours = date.getHours();
+          let minutes = this.getStr(date.getMinutes());
+          let seconds = this.getStr(date.getSeconds());
+          var date1 =Y + "-" + M + "-" + D + " " + hours + ":" + minutes + ":" + seconds;
+          // this.desmodule.registerTime =date1;
+        },
+        getStr(point) {
+          return ("00" + point).slice(-2); // 从字符串的倒数第二个字符开始截取，一直截取到最后一个字符；（在这里永远截取该字符串的最后两个字符）
+        },
       },
       created() {
           this.getdata()
