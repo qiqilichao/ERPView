@@ -118,7 +118,7 @@
             <el-table-column prop="productName" label="物料名称" width="180"></el-table-column>
             <el-table-column prop="type" label="用途类型" width="180"></el-table-column>
             <el-table-column prop="productDescribe" label="物料描述" width="180"></el-table-column>
-            <el-table-column prop="amountUnit" label="单位" width="180"></el-table-column>
+            <el-table-column prop="personalUnit" label="单位" width="180"></el-table-column>
             <el-table-column prop="costPrice" label="计划成本单价" width="180"></el-table-column>
             <el-table-column fixed="right" label="添加" width="100">
               <template slot-scope="scope">
@@ -152,6 +152,7 @@
                 <el-table-column prop="type" label="用途类型" width="180"></el-table-column>
                 <el-table-column prop="productDescribe" label="描述" width="180"></el-table-column>
                 <el-table-column prop="amount" label="数量" width="180"></el-table-column>
+                <el-table-column prop="personalUnit" label="单位" width="180"></el-table-column>
                 <el-table-column prop="costPrice" label="计划成本单价" width="180"></el-table-column>
                 <el-table-column prop="subtotal" label="小计" width="180"></el-table-column>
               </el-table>

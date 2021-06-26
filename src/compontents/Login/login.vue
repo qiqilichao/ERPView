@@ -9,7 +9,7 @@
            <el-form-item label="密码"  style="width: 400px" >
 
 
-             <el-input type="text"  v-model="pwd"></el-input>
+             <el-input type="password"  v-model="pwd"></el-input>
 
 
            </el-form-item>

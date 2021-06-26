@@ -372,6 +372,7 @@
           }
        },
        methods:{
+
             getformulateData(){
               var params=new URLSearchParams()
               //循环获取json对象中的key和value
@@ -487,7 +488,7 @@
            var arr= this.formulateArr.filter((item)=>{return item.checked==true;})
             var applyIdGroup="";
                   arr.forEach((item)=>{
-                      applyIdGroup+="|"+item.applyId+"|  "
+                      applyIdGroup+=item.applyId+"-";
                   })
            var params= new URLSearchParams();
            params.append("productId",this.formulate.productId);
@@ -504,6 +505,12 @@
                   this.dialogTableVisible=false;
                   this.dVisible=false;
                   this.getformulateData();
+                }else{
+                  this.$message({
+                    showClose: true,
+                    message: '提交失败',
+                    type: 'error'
+                  });
                 }
            }).catch()
 
