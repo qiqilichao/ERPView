@@ -104,6 +104,8 @@
   import Formulate  from "./compontents/Productionschedulingmanagement/Formulate"
   import Shejidan from "./compontents/Chanpingsheji/Shejidan"
   import ModuleShenhe from "./compontents/Chanpingsheji/ModuleShenhe"
+  import Moduleselect from "./compontents/Chanpingsheji/Moduleselect"
+  import Moduleupdate from "./compontents/Chanpingsheji/Moduleupdate"
 
   import Productfilechange from "./compontents/Internalproduction/Productfilechange"
   import ApplyExamine from "./compontents/productionplan/ApplyExamine";
@@ -115,10 +117,6 @@
   import Productfilesarepermanentlydeleted from "./compontents/Internalproduction/Productfilesarepermanentlydeleted"
 
   import Dispatchaudit from "./compontents/productionplan/Dispatchaudit"
-  import Processmaterialdesign from "./compontents/Processmaterial/Processmaterialdesign";
-  import Processmaterialtoexamine from "./compontents/Processmaterial/Processmaterialtoexamine";
-  import Processmaterialtoexaminechange from "./compontents/Processmaterial/Processmaterialtoexaminechange";
-  import Processmaterialtoexaminequery from "./compontents/Processmaterial/Processmaterialtoexaminequery";
 
   import Dispatchinquiry from "./compontents/productionplan/Dispatchinquiry"
 
@@ -191,6 +189,8 @@
   components:{
     Welcome,ProductRegistration,ProductRegistrationreview,Productionquery,plan,Outboundappregistration,Outboundscheduling,
     Outboundappregistrationreview,Outboundappregistrationquery,Storagescheduling,Makeprocessdesignsheet,Makeprocessdesignsheettoexamine,
+    Makeprocessdesignsheettoexaminequrey,Makeprocessdesignsheettoexaminechange,ApplyExamine,QueryApply,Shejidan,ModuleShenhe,
+    ProductFileRegistration,Reviewproductfileregistration,ProductFileEnquiry,Dispatchaudit,Dispatchinquiry,Formulate,Moduleselect,Moduleupdate
      Makeprocessdesignsheettoexaminequrey, Processmaterialtoexaminechange,Reviewproductfileregistration,ProductFileEnquiry,
     Productfilechange,Formulate,Deleteproductfile, Productfilerecovery,Productfilesarepermanentlydeleted,Processmaterialdesign,
     Processmaterialtoexaminequery,Warehousingapplication,Warehouseapplicationreview,Warehouseapplicationinquiry,
