@@ -23,45 +23,41 @@
       </el-header>
       <el-container>
         <el-aside>
-                  <el-menu
-                    default-active="2"
-                    class="el-menu-vertical-demo"
-                    background-color="#545c64"
-                    text-color="#fff"
-                    active-text-color="#ffd04b">
-                    <el-submenu :index="parentmenu.id+''" :key="parentmenu.id" v-for="parentmenu in menutable">
-                      <template slot="title">
-                        <i :class="parentmenu.imageUrl"></i>
-                        <span>{{parentmenu.name}}</span>
-                      </template>
-                        <el-submenu :index="childmenu1.id+''"  :key="childmenu1.id" v-for="childmenu1 in parentmenu.childMenu">
-                          <template slot="title">
-                            <i :class="childmenu1.imageUrl"></i>
-                            <span>{{childmenu1.name}}</span>
-                          </template>
-
-                          <el-menu-item-group>
-                            <el-menu-item v-if="childmenu2.childMenu.length==0" :key="childmenu2.id"  @click="addTab(childmenu2.name,childmenu2.linkUrl)" :index="childmenu2.id+''" v-for="childmenu2 in childmenu1.childMenu">
-                              <i :class="childmenu2.imageUrl"></i>{{childmenu2.name}}
-                            </el-menu-item>
-                          </el-menu-item-group>
-                          <el-submenu v-if="childmenu2.childMenu.length > 0" :key="childmenu2.id" :index="childmenu2.id+''" v-for="childmenu2 in childmenu1.childMenu">
-                            <template slot="title">
-                              <i :class="childmenu2.imageUrl"></i>
-                              <span>{{childmenu2.name}}</span>
-                            </template>
-
-                            <el-menu-item-group>
-                              <el-menu-item   @click="addTab(childmenu3.name,childmenu3.linkUrl)" :key="childmenu3.id" :index="childmenu3.id+''" v-for="childmenu3 in childmenu2.childMenu">
-                                <i :class="childmenu3.imageUrl"></i>{{childmenu3.name}}
-
-                              </el-menu-item>
-                            </el-menu-item-group>
-
-                          </el-submenu>
-                        </el-submenu>
-                    </el-submenu>
-                  </el-menu>
+          <el-menu
+            default-active="2"
+            class="el-menu-vertical-demo"
+            background-color="#545c64"
+            text-color="#fff" unique-opened
+            active-text-color="#ffd04b">
+            <el-submenu :index="parentmenu.id+''" :key="parentmenu.id" v-for="parentmenu in menutable">
+              <template slot="title">
+                <i :class="parentmenu.imageUrl"></i>
+                <span>{{parentmenu.name}}</span>
+              </template>
+              <el-submenu :index="childmenu1.id+''"  :key="childmenu1.id" v-for="childmenu1 in parentmenu.childMenu">
+                <template slot="title">
+                  <i :class="childmenu1.imageUrl"></i>
+                  <span>{{childmenu1.name}}</span>
+                </template>
+                <el-menu-item-group>
+                  <el-menu-item v-if="childmenu2.childMenu.length==0" :key="childmenu2.id"  @click="addTab(childmenu2.name,childmenu2.linkUrl)" :index="childmenu2.id+''" v-for="childmenu2 in childmenu1.childMenu">
+                    <i :class="childmenu2.imageUrl"></i>{{childmenu2.name}}
+                  </el-menu-item>
+                </el-menu-item-group>
+                <el-submenu v-if="childmenu2.childMenu.length > 0" :key="childmenu2.id" :index="childmenu2.id+''" v-for="childmenu2 in childmenu1.childMenu">
+                  <template slot="title">
+                    <i :class="childmenu2.imageUrl"></i>
+                    <span>{{childmenu2.name}}</span>
+                  </template>
+                  <el-menu-item-group>
+                    <el-menu-item   @click="addTab(childmenu3.name,childmenu3.linkUrl)" :key="childmenu3.id" :index="childmenu3.id+''" v-for="childmenu3 in childmenu2.childMenu">
+                      <i :class="childmenu3.imageUrl"></i>{{childmenu3.name}}
+                    </el-menu-item>
+                  </el-menu-item-group>
+                </el-submenu>
+              </el-submenu>
+            </el-submenu>
+          </el-menu>
         </el-aside>
         <el-main>
           <el-tabs v-model="editableTabsValue" type="card" closable @tab-remove="removeTab">
@@ -100,6 +96,8 @@
   import Warehousingapplication from "./compontents/Inandoutscheduling/Warehousingapplication"
   import Warehouseapplicationreview from "./compontents/Inandoutscheduling/Warehouseapplicationreview"
   import Warehouseapplicationinquiry from "./compontents/Inandoutscheduling/Warehouseapplicationinquiry"
+
+
   import QueryApply from "./compontents/productionplan/QueryApply"
   import Formulate  from "./compontents/Productionschedulingmanagement/Formulate"
   import Shejidan from "./compontents/Chanpingsheji/Shejidan"
@@ -135,8 +133,9 @@
         name: '1',
         content: 'Welcome'
       }],
-      tabIndex: 1   // 设置到name属性的值
+      tabIndex: 1,   // 设置到name属性的值
       // isCollapse:true
+      apd:false
 
     }
   },
@@ -194,12 +193,20 @@
     Welcome,ProductRegistration,ProductRegistrationreview,Productionquery,plan,Outboundappregistration,Outboundscheduling,
     Outboundappregistrationreview,Outboundappregistrationquery,Storagescheduling,Makeprocessdesignsheet,Makeprocessdesignsheettoexamine,
     Makeprocessdesignsheettoexaminequrey,Makeprocessdesignsheettoexaminechange,ApplyExamine,QueryApply,Shejidan,ModuleShenhe,
+
+    ProductFileRegistration,Reviewproductfileregistration,ProductFileEnquiry,Dispatchaudit,Dispatchinquiry,Formulate,Moduleselect,Moduleupdate
+    ,Processmaterialtoexaminechange,
+    Productfilechange,Deleteproductfile, Productfilerecovery,Productfilesarepermanentlydeleted,Processmaterialdesign,
+    Processmaterialtoexaminequery,Warehousingapplication,Warehouseapplicationreview,Warehouseapplicationinquiry,
+
+
     ProductFileRegistration,Reviewproductfileregistration,ProductFileEnquiry,Dispatchaudit,Dispatchinquiry,Formulate,Moduleselect,Moduleupdate,
      Makeprocessdesignsheettoexaminequrey, Processmaterialtoexaminechange,Reviewproductfileregistration,ProductFileEnquiry,
     Productfilechange,Formulate,Deleteproductfile, Productfilerecovery,Productfilesarepermanentlydeleted,Processmaterialdesign,
     Processmaterialtoexaminequery,Warehousingapplication,Warehouseapplicationreview,Warehouseapplicationinquiry,
     Makeprocessdesignsheettoexaminechange,ApplyExamine,QueryApply,Shejidan,ModuleShenhe,
-    ProductFileRegistration,Dispatchaudit,Dispatchinquiry,Processmaterialtoexamine
+    ProductFileRegistration,Dispatchaudit,Dispatchinquiry,Processmaterialtoexamine,
+   /*Stashed, changes*/
 
   },
   created() {
