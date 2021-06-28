@@ -235,7 +235,8 @@
         cellbyId:[],
         dqcunchuliang:1,
         shu:1,
-        gid:1
+        gid:1,
+        productI:""
       }
     },
     methods: {
@@ -280,6 +281,8 @@
     },
       gatherDetailupdate(productId,id) {
         this.gathershow = false;
+        this.gid=id;
+        this.productI=productId;
         var _this = this;
         var params = new URLSearchParams();
         params.append("productId", productId);
@@ -325,29 +328,55 @@
       //提交
       rukutijiao() {
         var _this=this;
-        this.gid= this.gatherxiang.id;
         this.cellbyId.forEach((item)=>{
           if(item.amount-this.shu<0){
             alert("入库数量大于库存存放数量，存放失败！！！")
           }else if(this.querylianjiaBy.amount!=this.shu) {
             alert("入库数量有误，请重新输入！！！！！")
           }else{
-
             item["rukushu"]=this.shu;
             item["gid"] =this.gid;
-
             this.$axios.post("cell/dqcunchuUpdateById.action",JSON.stringify(this.cellbyId),{headers:{"Content-Type":"application/json"}}).then(response =>{
 
             })
-
-            this.$axios.post("gatherDetail/rukubiaojiUpdate.action", params).then(function (response) {
-              if (response.data == true) {
+            this.$axios.post("gatherDetail/rukubiaojiUpdate.action",JSON.stringify(this.cellbyId),{headers:{"Content-Type":"application/json"}}).then(response =>{
+              alert(345)
+              if (response.data == "sh") {
                 this.$message({
-                  message: '添加成功，请去审核',
+                  message: '调度成功',
                   type: 'success'
                 });
-                this.yulan=false;
-                this.getmenudata();
+                _this.ruku = false;
+
+                _this.getgatherdata();
+
+              }else if(response.data == "ss"){
+
+                /*  var params = new URLSearchParams();
+                  params.append("productId",_this.productI);
+
+                  _this.$axios.post("cell/cellproductId.action", params).then(function (response) {
+                    if (response.data == 0) {
+                      _this.diaodufalse = true;
+                    } else {
+                      params.append("id", _this.gid);
+                      _this.$axios.post("gatherDetail/querylianjiaBy.action",params).then(function (response) {
+                        _this.querylianjiaBy = response.data;
+                      }).catch();
+                      _this.$axios.post("cell/cellproductId.action",params).then(function (response) {
+                        _this.cellbyId=response.data;
+                        _this.cellbyId.forEach((item)=>{
+                          _this.dqcunchuliang=item.maxCapacityAmount-item.amount;
+                        })
+                      }).catch();
+                    }
+                  }).catch();
+                _this.gathershow = true;
+                _this.ruku = false;*/
+
+                _this.ruku = false;
+
+                _this.getgatherdata();
               }
             }).catch();
           }

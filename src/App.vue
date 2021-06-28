@@ -119,7 +119,9 @@
   import Dispatchaudit from "./compontents/productionplan/Dispatchaudit"
 
   import Dispatchinquiry from "./compontents/productionplan/Dispatchinquiry"
-
+  import Processmaterialtoexaminechange from "./compontents/Processmaterial/Processmaterialtoexaminechange"
+  import Processmaterialdesign from "./compontents/Processmaterial/Processmaterialdesign"
+  import Processmaterialtoexaminequery from "./compontents/Processmaterial/Processmaterialtoexaminequery"
   export default {
   name: 'app',
   data () {
@@ -188,14 +190,13 @@
   },
   components:{
     Welcome,ProductRegistration,ProductRegistrationreview,Productionquery,plan,Outboundappregistration,Outboundscheduling,
-    Outboundappregistrationreview,Outboundappregistrationquery,Storagescheduling,Makeprocessdesignsheet,Makeprocessdesignsheettoexamine,
-    Makeprocessdesignsheettoexaminequrey,Makeprocessdesignsheettoexaminechange,ApplyExamine,QueryApply,Shejidan,ModuleShenhe,
-    ProductFileRegistration,Reviewproductfileregistration,ProductFileEnquiry,Dispatchaudit,Dispatchinquiry,Formulate,Moduleselect,Moduleupdate
+    Outboundappregistrationreview,Outboundappregistrationquery,Storagescheduling,Makeprocessdesignsheet,Makeprocessdesignsheettoexamine
+    ,Makeprocessdesignsheettoexaminechange,ApplyExamine,QueryApply,Shejidan,ModuleShenhe,
+    ProductFileRegistration,Dispatchaudit,Dispatchinquiry,Moduleselect,Moduleupdate,
      Makeprocessdesignsheettoexaminequrey, Processmaterialtoexaminechange,Reviewproductfileregistration,ProductFileEnquiry,
     Productfilechange,Formulate,Deleteproductfile, Productfilerecovery,Productfilesarepermanentlydeleted,Processmaterialdesign,
     Processmaterialtoexaminequery,Warehousingapplication,Warehouseapplicationreview,Warehouseapplicationinquiry,
-    Makeprocessdesignsheettoexaminechange,ApplyExamine,QueryApply,Shejidan,ModuleShenhe,
-    ProductFileRegistration,Dispatchaudit,Dispatchinquiry,
+
 
   },
   created() {
