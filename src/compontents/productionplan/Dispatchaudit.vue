@@ -337,6 +337,8 @@
            params.append("checkTag",this.radio);
            params.append("checker",this.checker);
            params.append("id",this.formDispat.id);
+           params.append("productId",this.formDispat.productId);
+           params.append("productName",this.formDispat.productName);
            //params.append("amount",this.)
            params.append("manufactureId",this.formDispat.manufactureId);
            this.$axios.post("manufacture/SubmitforReview",params).then((response)=>{

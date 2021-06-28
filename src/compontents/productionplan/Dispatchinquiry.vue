@@ -33,7 +33,7 @@
           </el-select>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" >查询</el-button>
+          <el-button type="primary" @click="query">查询</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -129,11 +129,9 @@
               var params=new URLSearchParams();
               params.append("pageno",this.pageno);
               params.append("pagesize",this.pagesize);
-
             Object.keys(this.fromDispatch).forEach((item)=> {
               params.append(item,this.fromDispatch[item]);
             })
-
               this.$axios.post("manufacture/manufactureIPage",params).then((response)=>{
                    this.DispatchList=response.data.records;
                    this.total=response.data.total;
