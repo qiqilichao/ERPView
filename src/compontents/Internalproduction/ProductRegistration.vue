@@ -124,7 +124,7 @@
             <template slot-scope="scope">
               <div v-if="scope.row.procedureFinishTag=='G004-3'">
                 <el-button v-if="scope.row.procedureTransferTag=='G005-0'" type="danger" size="mini"
-                           @click="">交接登记</el-button>
+                           @click="jjdj(scope.$index)">交接登记</el-button>
                 <span style="color: orange" v-else-if="scope.row.procedureTransferTag=='G005-1'">等待复核</span>
                 <span v-else-if="scope.row.procedureTransferTag=='G005-2'">完成</span>
               </div>
@@ -270,6 +270,21 @@
           </el-form-item>
         </el-form>
       </el-dialog>
+
+      <el-dialog
+        :visible.sync="jiaojieformulateprocess"
+        width="20%"
+        :before-close="handleClose">
+        <div style="padding-left: 150px">
+          <el-button type="success" size="mini" @click="jjqr">确认</el-button>
+          <el-button type="info" size="mini" @click="jiaojieformulateprocess=false">返回</el-button>
+        </div>
+        <br>
+        <el-input size="small" v-model="realAmount">
+          <template slot="prepend">请输入本工序合格品数量:</template>
+        </el-input>
+
+      </el-dialog>
     </div>
 </template>
 
@@ -288,7 +303,8 @@
             resdia:false,
             desmodule: {},
             desmodulelist:[],
-            shulian:0
+            jiaojieformulateprocess:false,
+            realAmount:0
           }
         },
       methods:{
@@ -348,6 +364,38 @@
             this.$message.error('出现问题了，请联系开发人员！');
           })
         },
+        jjdj(index){
+          this.desmodule=this.productlist[index];
+          this.jiaojieformulateprocess=true;
+        },
+        jjqr(){
+          if (this.realAmount==this.desmodule.demandAmount ){
+            var params = new URLSearchParams();
+            params.append("id",this.desmodule.id)
+            params.append("realAmount",this.realAmount)
+            this.$axios.post("manufacture/tojiaojie",params).then(response =>{
+              if (response.data){
+                this.$message({
+                  message: '本工序交接登记完成，需要复核！',
+                  type: 'warning'
+                });
+                this.getdata();
+                this.resdia=false;
+                this.productdia=false;
+                this.jiaojieformulateprocess=false
+              }else{
+                this.$message.error('错误');
+              }
+            }).catch(e =>{
+              this.$message.error('出现问题了，请联系开发人员！');
+            })
+          }else{
+            this.$message.error('合格数量不对！！');
+          }
+        },
+        // aa(val){
+        //   this.desmodule.realAmount=this.realAmount
+        // },
         handleSizeChange(val) {  //页size变更
           this.pagesize = val;
           this.pageno = 1;

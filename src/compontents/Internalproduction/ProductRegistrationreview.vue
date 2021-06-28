@@ -119,9 +119,8 @@
           <el-table-column>
             <template slot-scope="scope">
               <div v-if="scope.row.procedureFinishTag=='G004-3'">
-                <el-button v-if="scope.row.procedureTransferTag=='G005-0'" type="danger" size="mini"
-                           @click="">交接登记</el-button>
-                <span style="color: orange" v-else-if="scope.row.procedureTransferTag=='G005-1'">等待复核</span>
+                <el-button type="danger" size="mini" @click="jjfh(scope.$index)"
+                           v-if="scope.row.procedureTransferTag=='G005-1'">交接复核</el-button>
                 <span v-else-if="scope.row.procedureTransferTag=='G005-2'">完成</span>
               </div>
             </template>
@@ -266,6 +265,24 @@
           </el-form-item>
         </el-form>
       </el-dialog>
+
+      <el-dialog
+        :visible.sync="jiaojieformulateprocess"
+        width="20%"
+        :before-close="handleClose">
+        <div style="padding-left: 150px">
+          <el-button type="success" size="mini" @click="jjqr">确认</el-button>
+          <el-button type="info" size="mini" @click="jiaojieformulateprocess=false">返回</el-button>
+        </div>
+        <br>
+        <el-input size="small" v-model="desmodule.demandAmount" readonly>
+          <template slot="prepend">本工序投产数量:</template>
+        </el-input>
+        <el-input size="small" v-model="desmodule.realAmount">
+          <template slot="prepend">请输入本工序合格品数量:</template>
+        </el-input>
+
+      </el-dialog>
     </div>
 </template>
 
@@ -283,7 +300,8 @@
           productlist:[],
           resdia:false,
           desmodule: {},
-          desmodulelist:[]
+          desmodulelist:[],
+          jiaojieformulateprocess:false
         }
       },
       methods:{
@@ -326,6 +344,30 @@
               this.getdata();
               this.resdia=false;
               this.productdia=false
+            }
+          }).catch(e =>{
+            this.$message.error('出现问题了，请联系开发人员！');
+          })
+        },
+        jjfh(index){
+          this.desmodule=this.productlist[index];
+          this.jiaojieformulateprocess=true;
+        },
+        jjqr(){
+          var params = new URLSearchParams();
+          params.append("id",this.desmodule.id)
+          this.$axios.post("manufacture/jiaojieok",params).then(response =>{
+            if (response.data){
+              // this.$message({
+              //   message: '本工序交接登记完成，需要复核！',
+              //   type: 'warning'
+              // });
+              this.getdata();
+              this.resdia=false;
+              this.productdia=false;
+              this.jiaojieformulateprocess=false
+            }else{
+              this.$message.error('错误');
             }
           }).catch(e =>{
             this.$message.error('出现问题了，请联系开发人员！');

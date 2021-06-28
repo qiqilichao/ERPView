@@ -200,12 +200,7 @@
     Processmaterialtoexaminequery,Warehousingapplication,Warehouseapplicationreview,Warehouseapplicationinquiry,
 
 
-    ProductFileRegistration,Reviewproductfileregistration,ProductFileEnquiry,Dispatchaudit,Dispatchinquiry,Formulate,Moduleselect,Moduleupdate,
-     Makeprocessdesignsheettoexaminequrey, Processmaterialtoexaminechange,Reviewproductfileregistration,ProductFileEnquiry,
-    Productfilechange,Formulate,Deleteproductfile, Productfilerecovery,Productfilesarepermanentlydeleted,Processmaterialdesign,
-    Processmaterialtoexaminequery,Warehousingapplication,Warehouseapplicationreview,Warehouseapplicationinquiry,
-    Makeprocessdesignsheettoexaminechange,ApplyExamine,QueryApply,Shejidan,ModuleShenhe,
-    ProductFileRegistration,Dispatchaudit,Dispatchinquiry,Processmaterialtoexamine,
+    Processmaterialtoexamine
    /*Stashed, changes*/
 
   },
