@@ -249,7 +249,7 @@
           value:"否",
           show:true,
           hidden:false,
-          updateTime:"",
+          updateTime:new Date(),
           scellform:{
             config:"",//配置要求
             register:'',//登记人
@@ -290,7 +290,6 @@
           this.$axios.post("Scell/queryAllScell.May", params).then(function (response) {
             _this.tableData = response.data.list;
             _this.total = response.data.total;
-            console.log()
           }).catch();
         },
         handleSizeChange(val) {  //页size变更
@@ -364,7 +363,7 @@
           var _this=this;
           var params = new URLSearchParams();
           params.append("productId", productId);
-          this.$axios.post("Scell/queryByIdScell2.May", params).then(function (response) {
+          this.$axios.post("Scell/queryByIdSCell2.May", params).then(function (response) {
             _this.dfileform=response.data;
           }).catch();
         },
@@ -390,7 +389,7 @@
                 type: 'danger'
               });
             }
-            this.getdata();
+            _this.getdata();
             _this.$forceUpdate();
           }).catch();
         }

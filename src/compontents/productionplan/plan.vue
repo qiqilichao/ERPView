@@ -21,18 +21,18 @@
          <!--顶部 -->
          <div>
 
-           <el-input placeholder="请输入内容" :value="str"  size="small">
+           <el-input placeholder="请输入内容" :value="str" style="width: 100%;"  size="small">
              <template slot="prepend">生产理由:</template>
            </el-input>
-           <el-input  size="small"  placeholder="请输入内容">
+           <el-input  size="small" style="width: 100%;"  placeholder="请输入内容">
              <template slot="prepend">
                供货时间:
              </template>
            </el-input>
-           <el-input placeholder="请输入内容" size="small" v-model="register">
+           <el-input placeholder="请输入内容" size="small" style="width: 100%;"  v-model="register">
              <template slot="prepend">登记人是:</template>
            </el-input>
-           <el-input placeholder="请输入内容" :value="datez" size="small">
+           <el-input placeholder="请输入内容" :value="datez" style="width: 100%;"  size="small">
              <template slot="prepend">登记时间:</template>
            </el-input>
 
@@ -159,16 +159,16 @@
          <!--顶部 -->
          <div>
 
-           <el-input placeholder="请输入内容" :value="str" size="small">
+           <el-input placeholder="请输入内容" :value="str" style="width: 100%;"  size="small">
              <template slot="prepend">生产理由:</template>
            </el-input>
-           <el-input placeholder="请输入内容" size="small">
+           <el-input placeholder="请输入内容" style="width: 100%;"  size="small">
              <template slot="prepend">供货时间:</template>
            </el-input>
-           <el-input placeholder="请输入内容" size="small" v-model="register">
+           <el-input placeholder="请输入内容" size="small" style="width: 100%;"  v-model="register">
              <template slot="prepend">登记人是:</template>
            </el-input>
-           <el-input placeholder="请输入内容" :value="datez" size="small">
+           <el-input placeholder="请输入内容" :value="datez" style="width: 100%;"  size="small">
              <template slot="prepend">登记时间:</template>
            </el-input>
 

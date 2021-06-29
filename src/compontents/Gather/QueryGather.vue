@@ -136,7 +136,7 @@
         Object.keys(this.queryGather).forEach((key) => {
           params.append(key, this.queryGather[key])
         });
-        this.axios.post("/gath/page", params).then((resp) => {
+        this.$axios.post("/gath/page", params).then((resp) => {
           this.total = resp.data.total;
           this.gatherList = resp.data.list;
         }).catch(function (error) {

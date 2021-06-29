@@ -202,7 +202,7 @@
         Object.keys(this.queryGather).forEach((key) => {
           params.append(key, this.queryGather[key])
         });
-        this.axios.post("/gather/page", params).then((resp) => {
+        this.$axios.post("/gather/page", params).then((resp) => {
           this.total = resp.data.total;
           this.gatherList = resp.data.list;
         }).catch(function (error) {
@@ -224,7 +224,7 @@
       showCheckDialog(e){
         this.checkDialogVisible = true;
         this.gather = e;
-        this.axios.post("/gath/gatherDetails/"+e.id).then((resp) => {
+        this.$axios.post("/gath/gatherDetails/"+e.id).then((resp) => {
           resp.data.shuliang = 1;
           this.gatherDetails.push(resp.data)
         }).catch(function (error) {
@@ -253,7 +253,7 @@
           var params = new URLSearchParams();
           params.append("id", this.gatherDetails[0].id);
           params.append("count", this.gatherDetails[0].count);
-          this.axios.post("/gath/checkGatherCount",params).then((resp) => {
+          this.$axios.post("/gath/checkGatherCount",params).then((resp) => {
             this.$message.success(resp.data.message)
             this.checkDialogClosed();
             this.getGatherList();

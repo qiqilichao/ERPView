@@ -100,13 +100,11 @@
             label="调度">
 
             <template slot-scope="scope">
-              <el-button v-if="scope.row.amount>0" @click="dispatch(scope.row)">调度</el-button>
+              <el-button v-if="scope.row.amount>scope.row.paidAmount" @click="dispatch(scope.row)">调度</el-button>
 
-              <span v-else-if="scope.row.amount==0">已完成</span>
+<!--              <span v-else-if="scope.row.amount==0">已完成</span>-->
 
-              <span v-else-if="scope.row.amount==scope.row.paidAmount">已完成</span>
-
-
+            <span v-else-if="scope.row.amount==scope.row.paidAmount">已完成</span>
             </template>
           </el-table-column>
         </el-table>
@@ -344,6 +342,7 @@
               if(response.data){
                 this.Outboundscheduling=false;
                 this.dispatchAndDispatch=false;
+
                 this.$message({
                   showClose: true,
                   message: '提交成功',
