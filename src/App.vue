@@ -122,6 +122,8 @@
 
   import Dispatchinquiry from "./compontents/productionplan/Dispatchinquiry"
 
+  import Dynamicinventory from "./compontents/productionplan/Dynamicinventory"
+
   import AddGather from "./compontents/Gather/AddGather";
   import CheckGather from "./compontents/Gather/CheckGather";
   import QueryGather from "./compontents/Gather/QueryGather";
@@ -203,12 +205,22 @@
     Welcome,ProductRegistration,ProductRegistrationreview,Productionquery,plan,Outboundappregistration,Outboundscheduling,
     Outboundappregistrationreview,Outboundappregistrationquery,Storagescheduling,Makeprocessdesignsheet,Makeprocessdesignsheettoexamine,
     Makeprocessdesignsheettoexaminequrey,Makeprocessdesignsheettoexaminechange,ApplyExamine,QueryApply,Shejidan,ModuleShenhe,
+
     ProductFileRegistration,Reviewproductfileregistration,ProductFileEnquiry,Dispatchaudit,Dispatchinquiry,Formulate,Moduleselect,Moduleupdate
     ,Processmaterialtoexaminechange,
     Productfilechange,Deleteproductfile, Productfilerecovery,Productfilesarepermanentlydeleted,Processmaterialdesign,
     Processmaterialtoexaminequery,Warehousingapplication,Warehouseapplicationreview,Warehouseapplicationinquiry,
     Processmaterialtoexamine,AddGather,QueryGather,CheckGather,InventoryQuery,InventoryChanges,CustomizeTheInstallation,
     SafetyStockReview,Sc
+
+
+    ProductFileRegistration,Reviewproductfileregistration,ProductFileEnquiry,Dispatchaudit,Dispatchinquiry,Formulate,Moduleselect,Moduleupdate,
+     Makeprocessdesignsheettoexaminequrey, Processmaterialtoexaminechange,Reviewproductfileregistration,ProductFileEnquiry,
+    Productfilechange,Formulate,Deleteproductfile, Productfilerecovery,Productfilesarepermanentlydeleted,Processmaterialdesign,
+    Processmaterialtoexaminequery,Warehousingapplication,Warehouseapplicationreview,Warehouseapplicationinquiry,
+    Makeprocessdesignsheettoexaminechange,ApplyExamine,QueryApply,Shejidan,ModuleShenhe,
+    ProductFileRegistration,Dispatchaudit,Dispatchinquiry,Processmaterialtoexamine,Dynamicinventory,
+   /*Stashed, changes*/
 
   },
   created() {
