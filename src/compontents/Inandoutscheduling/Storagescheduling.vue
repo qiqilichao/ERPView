@@ -340,7 +340,7 @@
 
             })
             this.$axios.post("gatherDetail/rukubiaojiUpdate.action",JSON.stringify(this.cellbyId),{headers:{"Content-Type":"application/json"}}).then(response =>{
-              alert(345)
+
               if (response.data == "sh") {
                 this.$message({
                   message: '调度成功',
