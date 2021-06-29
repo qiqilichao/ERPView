@@ -211,7 +211,7 @@
     Productfilechange,Deleteproductfile, Productfilerecovery,Productfilesarepermanentlydeleted,Processmaterialdesign,
     Processmaterialtoexaminequery,Warehousingapplication,Warehouseapplicationreview,Warehouseapplicationinquiry,
     Processmaterialtoexamine,AddGather,QueryGather,CheckGather,InventoryQuery,InventoryChanges,CustomizeTheInstallation,
-    SafetyStockReview,Sc
+    SafetyStockReview,Sc,
 
 
     ProductFileRegistration,Reviewproductfileregistration,ProductFileEnquiry,Dispatchaudit,Dispatchinquiry,Formulate,Moduleselect,Moduleupdate,
